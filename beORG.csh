@@ -2,7 +2,7 @@
 
 #########################################
 # organize behavioral data              #
-#										#
+#										                    #
 # Usage: ./beORG.csh <sub>              #
 #########################################
 
@@ -25,3 +25,4 @@ mkdir $be/onsets/P1
 mkdir $be/onsets/P2
 
 
+## END
