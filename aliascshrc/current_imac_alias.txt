@@ -1,0 +1,25 @@
+# application calls
+alias aqua 'open -a /Applications/Aquamacs.app'
+alias subl 'open -a /Applications/Sublime\ Text\ 2.app'
+
+# study_dir shortcuts
+alias nrsa 'setenv STUDY_DIR ~/Documents/NRSA'
+alias mig 'setenv STUDY_DIR ~/Documents/MIG'
+alias rap 'setenv STUDY_DIR ~/Documents/RAP'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## END
