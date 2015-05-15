@@ -15,9 +15,6 @@ set path = (/usr/local/bin $path $HOME/abin/macosx_10.7_Intel_64 )
 setenv DYLD_FALLBACK_LIBRARY_PATH $HOME/abin/macosx_10.7_Intel_64
 setenv PYTHONPATH /usr/local/lib/python2.7/site-packages    
 
-# local scripts
-set path = ($path ~/scripts)
-
 # git reponsitories
 ssh -T git@github.com
 set path = ($path ~/imaging)
@@ -26,7 +23,7 @@ set path = ($path ~/github)
 
 
 
-### copy .cshrc and .alias to scripts dirctory
+### copy .cshrc and .alias to imaging dirctory
 cp ~/.cshrc ~/imaging/aliascshrc/current_imac_cshrc.txt
 cp ~/.alias ~/imaging/aliascshrc/current_imac_alias.txt
 

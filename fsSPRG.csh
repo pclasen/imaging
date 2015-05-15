@@ -1,9 +1,9 @@
 #! /bin/csh -ef
 
 #########################################
-# SPGR processing (autorecon-all)	#
-#					#
-# Usage: ./fsSPRG.csh            	#
+# SPGR processing (autorecon-all)       #
+#                                       #
+# Usage: ./fsSPRG.csh                   #
 #########################################
 
 # requires up to date SNI_files_copied log
