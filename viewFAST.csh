@@ -10,7 +10,7 @@
 
 set DIR = $STUDY_DIR
 set file = $DIR/$1
-set doc = $DIR/documentation/FAST_review.txt
+set doc = $DIR/doc/FAST_review.txt
 
 echo `Date` "FILE: $1 ##############" >> $doc
 
