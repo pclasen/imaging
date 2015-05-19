@@ -1,0 +1,5 @@
+# application calls
+alias aqua 'open -a /Applications/Aquamacs.app'
+alias subl 'open -a /Applications/Sublime\ Text\ 2.app'
+
+ ## end
