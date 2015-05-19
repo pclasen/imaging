@@ -53,7 +53,7 @@ for i = 1:length(run)
         
         % place in unique folders
         subdir = [dir,sub,'/be/onsets/P1/'];
-        rundir = [subdir,'M1',run{i}];
+        rundir = [subdir,'M1/',run{i}];
         if exist(rundir,'dir') == 0
             mkdir(rundir);
         end

@@ -79,7 +79,7 @@ for i = 1:8 % one for each run
         
         % place onsets in unique run folders
         subdir = [dir,sub,'/be/onsets/P2/'];
-        rundir = [subdir,'M1R',int2str(i)];
+        rundir = [subdir,'M1/R',int2str(i)];
         if exist(rundir,'dir') == 0
             mkdir(rundir);
         end
