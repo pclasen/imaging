@@ -16,12 +16,10 @@ setenv DYLD_FALLBACK_LIBRARY_PATH $HOME/abin/macosx_10.7_Intel_64
 setenv PYTHONPATH /usr/local/lib/python2.7/site-packages    
 
 # git reponsitories
-ssh -T git@github.com
-set path = ($path ~/imaging)
-set path = ($path ~/github)
-
-
-
+set path = ($path ~/imaging/preprocess)
+set path = ($path ~/imaging/feat)
+set path = ($path ~/imaging/behavior)
+set path = ($path ~/github/admin)
 
 ### copy .cshrc and .alias to imaging dirctory
 cp ~/.cshrc ~/imaging/aliascshrc/current_imac_cshrc.txt

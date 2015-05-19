@@ -1,13 +1,12 @@
 #! /bin/csh -ef
 
 #########################################
-# copy data from drive to local		#
-#					#
-# Usage: ./cpNRSA.csh <sub>		#
+# copy data from drive to local			#
+# Usage: ./cpNRSA.csh <study> <sub>		#	
 #########################################
 
-set DIR = $STUDY_DIR # set this in environment (e.g., ~/Documents/MIG)
-set sub = $1
+set DIR = ~/Documents/$1
+set sub = $2
 set nrsa = /Volumes/clasenEx/Imaging/nrsa
 
 mkdir $DIR/$sub
@@ -24,3 +23,4 @@ endif
 
 cp $nrsa/$sub/stru/brainmask.nii.gz $DIR/$sub/ana/brainmask.nii.gz
 
+# end

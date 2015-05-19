@@ -1,16 +1,17 @@
 #! /bin/csh -ef
 
-#########################################
-# trim functionals	                #
-#					#
-# Usage: ./trim.csh <sub> <leadin>      #
-# Note:  specify leadin in seconds      #
-#########################################
+#################################################
+# trim functionals								#
+# Usage:	./trim.csh <study> <sub> <leadin>	#
+# Note:  	specify leadin in seconds      		#
+# Ex:		./trim.csh MIG MIG-2722 8			#
+# p.clasen										#
+#################################################
 
 
-set DIR = $STUDY_DIR # set this in environment (e.g., ~/Documents/MIG)
-set sub = $1
-set leadin = `expr $2 / 2`
+set DIR = ~/Documents/$1
+set sub = $2
+set leadin = `expr $3 / 2`
 
 foreach i ($DIR/$sub/fun/*.nii.gz)
     # grab file name
@@ -23,3 +24,4 @@ foreach i ($DIR/$sub/fun/*.nii.gz)
     fslroi $i $run\_trim.nii.gz $begin $end
 end
     
+# end
