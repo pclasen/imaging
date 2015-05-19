@@ -11,7 +11,7 @@ set server = /Volumes/iang/biac3/gotlib7/data/$1
 set DIR = ~/Documents/$1
 set file = $DIR/doc/asublist.txt
 
-echo "SNI to Local updated on" `date` >>  $DIR/doc/copyLog.txt
+echo "SNI to Local updated on:" `date` >>  $DIR/doc/copyLog.txt
 
 cd $server
 
