@@ -1,16 +1,16 @@
 #! /bin/csh -ef
 
 #########################################
-# view segmentations from FAST   	#
-#					#
-# Usage: ./viewFAST.csh <file>		#
+# view segmentations from FAST_review	#
+# Usage:	./viewFAST.csh <study>		#
+# Ex:		./viewFAST.csh MIG 			#
 #########################################
 
-## REQUIRES accurate "sublist.txt"
+## REQUIRES accurate "asublist.txt"
 
-set DIR = $STUDY_DIR
-set file = $DIR/$1
-set doc = $DIR/doc/FAST_review.txt
+set DIR = ~/Documents/$1
+set file = $DIR/doc/asublist.txt
+set doc = $DIR/doc/FASTreview.txt
 
 echo `Date` "FILE: $1 ##############" >> $doc
 
@@ -123,3 +123,5 @@ foreach line ("`cat $file`")
 end # for sublist loop
 
 echo "FAST review done for $1" `date`
+
+# end
