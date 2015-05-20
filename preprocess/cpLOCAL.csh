@@ -1,9 +1,9 @@
 #!/bin/csh
 
 #########################################
-# copy subjects from SNI to Local 		#
-# Usage:	./cpSNI.csh <study> 		#
-# Ex:		./cpSNI.csh MIG				#
+# copy subjects from local to SNI 		#
+# Usage:	./cpLOCAL.csh <study> 		#
+# Ex:		./cpLOCAL.csh MIG			#
 # p.clasen								#
 #########################################
 
@@ -18,7 +18,7 @@ foreach line ("`cat $file`")
     set sub = "$line"
 
     # copy files if not already done
-	rsync -av $DIR/$sub $server/$1/
+	rsync -av $DIR/$sub $server/
 
 end # for loop
 
