@@ -59,6 +59,14 @@ cp $tempfile $ofile
 sed s-BRAINMASK-{$anat}-g <$ofile>$tempfile
 cp $tempfile $ofile
 
+##replace EVs
+
+
+
+
+
+
+
 ##replace MOTPARS 
 # # sed s-MOTPARS-{$design/motpars}-g <$ofile>$tempfile
 # # cp $tempfile $ofile

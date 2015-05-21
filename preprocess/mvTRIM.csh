@@ -14,7 +14,7 @@ foreach line ("`cat $file`")
 
     # assign sub from file 
     set sub = "$line"
-    set fun = $sub
+    set fun = $sub/fun
 
     if ($1 == MIG)
 
