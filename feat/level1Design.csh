@@ -8,9 +8,9 @@
 #####################################################################################
 
 # Requires existing design.fsf for an exemplar subject/run
-# Set up first model version via Feat_gui & d
+	# Set up first model version via Feat_gui
 # this script then uses the design.fsf file to apply to all runs, all subjects
-# use the tag after "P2M2R1_" to designate uniqe set of design files
+# use the tag after "P2M2R1_" to designate unique set of design files
 
 # set arguments
 set DIR = ~/Documents/$1
@@ -35,24 +35,29 @@ if ($1 == MIG)
 			mkdir $DIR/$sub/feat/designFiles/$desName
 		endif
 
-		# phase one copy and update 
+		# phase 1 create design files
 		if ($phase == P1)
 
 			foreach run (R1 R2)  # phase 1 has 2 runs
 
 				# make unique design file for sub model run & this design 
-				~/imaging/feat/lib/MIGlevel1.csh $DIR $sub $model $run $desName $examSub $examFeat
+				~/imaging/feat/lib/MIGP1level1.csh $DIR $sub $model $run $desName $examSub $examFeat
 
-			end # for phase 1 
+			end # for runs
+		end # phase 1
 
+		# phase 2 create design files
+		if ($phase == P2)
 
-		else if ($phase == P2)
-		endif 
+			foreach run (R1 R2 R3 R4 R5 R6 R7 R8)  # phase 1 has 2 runs
 
+				# make unique design file for sub model run & this design 
+				~/imaging/feat/lib/MIGP2level1.csh $DIR $sub $model $run $desName $examSub $examFeat
 
-
-	end
-end
+			end # for runs
+		end # phase 1
+	end # for every subject in asublist.txt
+end # if MIG
 
 
 # end

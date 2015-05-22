@@ -64,12 +64,7 @@ cp $tempfile $ofile
 sed s-$dir/$examSub/fun/ana/FST1/mri/brainmask-{$anat}-g <$ofile>$tempfile
 cp $tempfile $ofile
 
-##set timing files
-set 
-
-
-
-
+##replace subid for all EV timing files
 
 
 ##replace MOTPARS 
