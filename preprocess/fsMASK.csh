@@ -1,7 +1,7 @@
 #!/bin/csh
 
 #############################################
-# copy subjects from SNI to local			#
+# create WM and LatVent masks from FS		#
 # Usage:	./fsMASK.csh <study> <sub>		#
 # Ex:		./fsMASK.csh MIG MIG-2722		#
 # p.clasen									#
