@@ -52,8 +52,8 @@ cp $dir/$examSub/feat/$examFeat.feat/design.fsf $ofile
 sed s-$dir/$examSub/feat/$examSub-{$feat_dir}-g <$ofile>$tempfile
 cp $tempfile $ofile
 
-##replace VOLUMES                                        THIS IS SUPER IMPORTANT!!!!! - edit here?
-sed s-VOLUMES-{$npts}-g <$ofile>$tempfile
+##replace VOLUMES                                        
+sed s-fmri(npts) 165-{fmri(npts) $npts}-g <$ofile>$tempfile
 cp $tempfile $ofile
 
 ##replace 4D-DATA
