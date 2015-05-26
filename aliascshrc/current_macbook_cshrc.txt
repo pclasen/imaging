@@ -11,7 +11,6 @@ setenv PATH ${FSLDIR}/bin:${PATH}
 source ${FSLDIR}/etc/fslconf/fsl.csh
 
 # git repositories
-ssh -T git@github.com
 set path = ($path ~/imaging)
 set path = ($path ~/github/admin)
 
