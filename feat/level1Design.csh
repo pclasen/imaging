@@ -40,19 +40,48 @@ if ($1 == MIG)
 
 			foreach run (R1 R2)  # phase 1 has 2 runs
 
-				# make unique design file for sub model run & this design 
+				# make unique design file for sub model run & this design, based on exemplar 
 				~/imaging/feat/lib/MIGlevel1.csh $DIR $sub $model $run $desName $examSub $examFeat
 
 			end # for phase 1 
 
 
 		else if ($phase == P2)
-		endif 
+
+			forech run (R1 R2 R3 R4 R5 R6 R7 R8) # phase 2 has 8 runs
+
+			# make unique design file for sub model run & this design, based on examplar
+			~/imaging/feat/lib/MIGlevel1.csh $DIR $sub $model $run $desName $examSub $examFeat
+
+		endif # for phase 2
+
+	end # for each subject in MIG
+
+else if ($1 == RAP)
+
+	foreach line ("`cat $file`")
+		
+		# set subject
+		set sub = "$line"
+
+		# set name for design file repository & make repository
+		set desName = echo $examFeat | sed -e 's/^R1//'
+		if (-d $DIR/$sub/feat/designFiles/$desName)
+		else
+			mkdir $DIR/$sub/feat/designFiles/$desName
+		endif
+
+		foreach run (R1 R2 R3 R4)  # 4 runs
+
+			# make unique design file for sub model run & this design, based on exemplar 
+			~/imaging/feat/lib/MIGlevel1.csh $DIR $sub $model $run $desName $examSub $examFeat
+
+		end # for each run
+
+	end # for each subject in RAP
 
 
-
-	end
-end
+end # if MIG/RAP
 
 
 # end
