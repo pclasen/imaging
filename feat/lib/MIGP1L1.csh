@@ -67,13 +67,8 @@ cp $tempfile $ofile
 sed s-$dir/$examSub/ana/FST1/mri/brainmask-{$anat}-g <$ofile>$tempfile			##MIG/MIG-2722/ana/FST1/mri/brainmask
 cp $tempfile $ofile
 
-<<<<<<< HEAD
 ##replace EV directories
 sed s-$dir/$examSub/be/onsets-{$onDir}-g <$ofile>$tempfile
-=======
-##replace subid for all EV timing files
-
->>>>>>> e127f536c2616d5b4edc9d2d6514eaf632b502ba
 
 ##replace MOTPARS 																##if running McFlirt to extract MPs and adding temporal derivatives
 # # sed s-MOTPARS-{$design/motpars}-g <$ofile>$tempfile

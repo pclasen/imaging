@@ -40,11 +40,8 @@ if ($1 == MIG)
 
 			foreach run (R1 R2)  # phase 1 has 2 runs
 
-<<<<<<< HEAD
 				# make unique design file for sub model run & this design, based on exemplar 
 				~/imaging/feat/lib/MIGP1level1.csh $DIR $sub $model $run $desName $examSub $examFeat
-=======
->>>>>>> e127f536c2616d5b4edc9d2d6514eaf632b502ba
 
 			end # for runs
 		end # phase 1
@@ -52,7 +49,6 @@ if ($1 == MIG)
 		# phase 2 create design files
 		if ($phase == P2)
 
-<<<<<<< HEAD
 			forech run (R1 R2 R3 R4 R5 R6 R7 R8) # phase 2 has 8 runs
 
 			# make unique design file for sub model run & this design, based on examplar
@@ -85,10 +81,6 @@ else if ($1 == RAP)
 
 	end # for each subject in RAP
 
-
 end # if MIG/RAP
-=======
->>>>>>> e127f536c2616d5b4edc9d2d6514eaf632b502ba
-
 
 # end
