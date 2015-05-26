@@ -16,7 +16,7 @@ foreach line ("`cat $file`")
     set sub = "$line"
     set fun = $sub/fun
 
-    if ($1 == MIG)
+    if ($1 == MIG) then
 
     	# phase 1
     	mv $fun/p1_run1_trim.nii.gz $fun/P1R1_trim.nii.gz
@@ -35,7 +35,7 @@ foreach line ("`cat $file`")
 		# rest    
     	mv $fun/rest_run1_trim.nii.gz $fun/rest_trim.nii.gz
 
-    else if ($1 == RAP)
+    else if ($1 == RAP) then
 
     	mv $fun/prae_run1_trim.nii.gz $fun/R1_trim.nii.gz
     	mv $fun/prae_run2_trim.nii.gz $fun/R2_trim.nii.gz
