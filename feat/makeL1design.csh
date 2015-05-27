@@ -2,8 +2,10 @@
 
 #####################################################################################
 # generate first level design files													#
-# Usage: ./level1Design.csh <study> <example sub> <phase> <model> <example feat> 	#
-# Ex:	 ./level1Design.csh MIG MIG-2722 P1 M2 P2M2R1_un005 						#
+# Usage: ./makeL1design.csh <study> <example sub> <phase> <model> <example feat> 	#
+# NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
+# Ex:	 ./makeL1design.csh MIG MIG-2722 P1 M1 P2M1R1_un005 						#
+# Ex:	 ./makeL1design.csh RAP RAP-???? M1 M1R1_un005 								#
 # p.clasen																			#
 #####################################################################################
 
@@ -15,9 +17,6 @@
 # set arguments
 set DIR = ~/Documents/$1
 set examSub = $2
-set phase = $3
-set model = $4
-set examFeat = $5
 set file = $DIR/doc/asublist_test.txt ###### CHANGE BACK AFTER DEBUGGING
 
 foreach line ("`cat $file`")
@@ -25,19 +24,26 @@ foreach line ("`cat $file`")
 	# set subject
 	set sub = "$line"
 
-	# set name for design file repository & make repository
-	set desName = `echo $examFeat | sed -e 's/R1//'`
-
 	## RUN MIG level 1				
 	if ($1 == MIG) then
 		
+		# set arguments
+		set phase = $3
+		set model = $4
+		set examFeat = $5
+
+		# set name for design file repository & make repository
+		set desName = `echo $examFeat | sed -e 's/R1//'`
+
 		## MIG design files: 	../MIG/$sub/feat/$phase/$model/designFiles/$design/$designRun.fsf
 		## MIG feat: 			../MIG/$sub/feat/$phase/$model/$design/$designRun.feat
 
 		# write ./feat/$phase/$modle/designFiles/designName (if not already exist)
-		if (-d $DIR/$sub/feat/$phase/$model/designFiles/$desName) then
+		if (-d $DIR/$sub/feat/$phase/$model/$desName/designFiles) then
+			echo "ERROR: Design already exists, choses a different name or see existing output."
+			exit 1
 		else
-			mkdir -p $DIR/$sub/feat/$phase/$model/designFiles/$desName
+			mkdir -p $DIR/$sub/feat/$phase/$model/$desName/designFiles
 		endif
 
 		# phase 1 create design files
@@ -68,6 +74,13 @@ foreach line ("`cat $file`")
 
 	## RUN RAP level 1
 	if ($1 == RAP) then
+
+		# set arguments
+		set model = $3
+		set examFeat = $4
+
+		# set name for design file repository & make repository
+		set desName = `echo $examFeat | sed -e 's/R1//'`
 
 		## MIG design files: 	../MIG/$sub/feat/$model/designFiles/$design/$designRun.fsf
 		## MIG feat: 			../MIG/$sub/feat/$model/$design/$designRun.feat

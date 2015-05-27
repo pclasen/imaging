@@ -8,13 +8,13 @@
 #########################################
 
 set DIR = ~/Documents/$1
-set file = $DIR/doc/asublist.txt
+set file = $DIR/doc/asublist.txt 
 
 foreach line ("`cat $file`")	    
 
     # assign sub from file 
     set sub = "$line"
-    set fun = $sub/fun
+    set fun = $DIR/$sub/fun
 
     if ($1 == MIG) then
 

@@ -18,7 +18,7 @@ set examFeat = $7
 # subject level directories
 set fun = $dir/$sub/fun
 set feat = $dir/$sub/feat
-set design = $feat/P2/$mod/designFiles/$desName
+set design = $feat/P2/$mod/$desName/designFiles
 
 # generate name for new copy of example design
 set  desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
@@ -37,7 +37,7 @@ set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
 set npts = $volumes[1]
 
 ##Make Design File
-cp $dir/$examSub/feat/P2/$mod/$examFeat.feat/design.fsf $ofile								
+cp $dir/$examSub/feat/P2/$mod/$desName/$examFeat.feat/design.fsf $ofile								
 
 ##replace subject ID
 sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile
@@ -53,6 +53,10 @@ cp $tempfile $ofile
 
 ##replace VOLUMES                                        
 sed -e 's/fmri(npts) 165/fmri(npts) '{$npts}'/g' <$ofile>$tempfile						##R1 has 165 volumes; make variable because run 2 has 149
+cp $tempfile $ofile
+
+##replace Featwatcher
+sed -e 's/fmri(featwatcher_yn) 1/fmri(featwatcher_yn) 0/g' <$ofile>$tempfile	
 cp $tempfile $ofile
 
 ##replace MOTPARS 																		##if running McFlirt to extract MPs and adding temporal derivatives
