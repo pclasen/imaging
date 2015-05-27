@@ -14,67 +14,45 @@ set run = $4
 set desName = $5
 set examSub = $6
 set examFeat = $7
-echo "$run"
 
 # subject level directories
 set fun = $dir/$sub/fun
 set feat = $dir/$sub/feat
-set design = $feat/designFiles/$desName
+set design = $feat/P1/$mod/designFiles/$desName
 
 # generate name for new copy of example design
-set  desRun = `echo $examFeat.fsf | sed -e 's/R1/'{$run}'/g'`
-echo $desRun
-
-#sets your feat dir:
-set feat_dir = $feat/P1/$mod/$desName/$desRun.feat 										#../../P1/M1/P1M1_un005/P1M1R1_un005.feat
-
-#sets your fmri dir:
-set fmri_dir = $fun
+set  desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
 
 #sets your output file:
-set ofile = $design/$desRun		 														#../../designFiles/P1M1_un005/P1M1R1_un005.fsf
+set ofile = $design/$desRun.fsf		 													
 
 #set temp file:
-set tempfile = $design/design-temp.txt													#../../designFiles/P1M1_un005/design-temp.txt
+set tempfile = $design/design-temp.txt													
 
 #sets your 4D feat data:
-set FourD = $fmri_dir/P1$run\_trim.nii.gz										
-
-#sets your anatomical
-set anat = $dir/$sub/ana/FST1/mri/brainmask.nii.gz
-
-#sets your behavioral onsets directory	
-set onDir = $dir/$sub/be/onsets															
+set FourD = $fun/P1$run\_trim.nii.gz																									
 
 #finds your total volumes
 set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
 set npts = $volumes[1]
 
 ##Make Design File
-cp $dir/$examSub/feat/P1/$examFeat.feat/design.fsf $ofile								##MIG/MIG-2722/feat/P1/P1M1R1_un005.feat/design.fsf
+cp $dir/$examSub/feat/P1/$mod/$examFeat.feat/design.fsf $ofile								
 
-##replace output directory
-set repOD = $dir/$examSub/feat/P1/$mod/$desName/$examFeat								##MIG/MIG-2722/feat/P1M1R1_un005
-sed 's-'{$repOD}'-'{$feat_dir}'-g' <$ofile>$tempfile									
+##replace subject ID
+sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile
+cp $tempfile $ofile
+
+##replace run
+sed -e 's/R1/'{$run}'/g' <$ofile>$tempfile 
+cp $tempfile $ofile
+
+##replace design name
+sed -e 's/'{$examFeat}'/'{$desRun}'/g' <$ofile>$tempfile
 cp $tempfile $ofile
 
 ##replace VOLUMES                                        
-sed 's-fmri(npts) 165-fmri(npts)'{$npts}'-g' <$ofile>$tempfile							##R1 has 165 volumes; make variable because run 2 has 149
-cp $tempfile $ofile
-
-##replace 4D-DATA
-set rep4D = $dir/$examSub/fun/P1$run\_trim												##MIG/MIG-2722/fun/P1R1_trim
-sed 's-'{$rep4D}'-'{$FourD}'-g' <$ofile>$tempfile						
-cp $tempfile $ofile
-
-##replace BRAINMASK
-set repBM = $dir/$examSub/ana/FST1/mri/brainmask 										##MIG/MIG-2722/ana/FST1/mri/brainmask
-sed 's-'{$repBM}'-'{$anat}'-g' <$ofile>$tempfile				
-cp $tempfile $ofile
-
-##replace EV directories
-set repEV = $dir/$examSub/be/onsets
-sed 's-'{$repEV}'-'{$onDir}'-g' <$ofile>$tempfile
+sed -e 's/fmri(npts) 165/fmri(npts) '{$npts}'/g' <$ofile>$tempfile						##R1 has 165 volumes; make variable because run 2 has 149
 cp $tempfile $ofile
 
 ##replace MOTPARS 																		##if running McFlirt to extract MPs and adding temporal derivatives

@@ -28,23 +28,17 @@ foreach line ("`cat $file`")
 	# set name for design file repository & make repository
 	set desName = `echo $examFeat | sed -e 's/R1//'`
 
-	# write ./feat and ./feat/designFiles (if do not exist already)
-	if (-d $DIR/$sub/feat) then
-	else
-		mkdir $DIR/$sub/feat
-		mkdir $DIR/$sub/feat/designFiles
-	endif
-
-	# write ./feat/designFiles/designName (if not already exist)
-	if (-d $DIR/$sub/feat/designFiles/$desName) then
-	else
-		mkdir $DIR/$sub/feat/designFiles/$desName
-	endif
-
 	## RUN MIG level 1				
 	if ($1 == MIG) then
-		## MIG design files: 	../MIG/$sub/feat/designFiles/$phase/$model/$design/$designRun.fsf
+		
+		## MIG design files: 	../MIG/$sub/feat/$phase/$model/designFiles/$design/$designRun.fsf
 		## MIG feat: 			../MIG/$sub/feat/$phase/$model/$design/$designRun.feat
+
+		# write ./feat/$phase/$modle/designFiles/designName (if not already exist)
+		if (-d $DIR/$sub/feat/$phase/$model/designFiles/$desName) then
+		else
+			mkdir -p $DIR/$sub/feat/$phase/$model/designFiles/$desName
+		endif
 
 		# phase 1 create design files
 		if ($phase == P1) then
@@ -75,8 +69,14 @@ foreach line ("`cat $file`")
 	## RUN RAP level 1
 	if ($1 == RAP) then
 
-		## MIG design files: 	../MIG/$sub/feat/designFiles/$model/$design/$designRun.fsf
+		## MIG design files: 	../MIG/$sub/feat/$model/designFiles/$design/$designRun.fsf
 		## MIG feat: 			../MIG/$sub/feat/$model/$design/$designRun.feat
+
+		# write ./feat/$phase/$modle/designFiles/designName (if not already exist)
+		if (-d $DIR/$sub/feat/$model/designFiles/$desName) then
+		else
+			mkdir -p $DIR/$sub/feat/$model/designFiles/$desName
+		endif
 
 		foreach run (R1 R2 R3 R4)  # 4 runs
 
