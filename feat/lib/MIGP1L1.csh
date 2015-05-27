@@ -44,7 +44,7 @@ set FourD = $fmri_dir/P1$run\_trim.nii.gz
 set anat = $dir/$sub/ana/FST1/mri/brainmask.nii.gz
 
 #sets your behavioral onsets directory	
-set onDir = $dir/$sub/be/onsets															#../../be/onsets
+set onDir = $dir/$sub/be/onsets															
 
 #finds your total volumes
 set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
@@ -54,24 +54,27 @@ set npts = $volumes[1]
 cp $dir/$examSub/feat/P1/$examFeat.feat/design.fsf $ofile								##MIG/MIG-2722/feat/P1/P1M1R1_un005.feat/design.fsf
 
 ##replace output directory
-sed 's-$dir/$examSub/feat/P1/$mod/$desName/$examFeat-{$feat_dir}-g' <$ofile>$tempfile	##MIG/MIG-2722/feat/P1M1R1_un005
+set repOD = $dir/$examSub/feat/P1/$mod/$desName/$examFeat								##MIG/MIG-2722/feat/P1M1R1_un005
+sed 's-'{$repOD}'-'{$feat_dir}'-g' <$ofile>$tempfile									
 cp $tempfile $ofile
 
 ##replace VOLUMES                                        
-sed 's-fmri(npts) 165-{fmri(npts) $npts}-g' <$ofile>$tempfile							##R1 has 165 volumes; make variable because run 2 has 149
+sed 's-fmri(npts) 165-fmri(npts)'{$npts}'-g' <$ofile>$tempfile							##R1 has 165 volumes; make variable because run 2 has 149
 cp $tempfile $ofile
 
-
 ##replace 4D-DATA
-sed 's-$dir/$examSub/fun/P1'$run'\_trim-{$FourD}-g' <$ofile>$tempfile						##MIG/MIG-2722/fun/P1R1_trim
+set rep4D = $dir/$examSub/fun/P1$run\_trim												##MIG/MIG-2722/fun/P1R1_trim
+sed 's-'{$rep4D}'-'{$FourD}'-g' <$ofile>$tempfile						
 cp $tempfile $ofile
 
 ##replace BRAINMASK
-sed 's-$dir/$examSub/ana/FST1/mri/brainmask-{$anat}-g' <$ofile>$tempfile				##MIG/MIG-2722/ana/FST1/mri/brainmask
+set repBM = $dir/$examSub/ana/FST1/mri/brainmask 										##MIG/MIG-2722/ana/FST1/mri/brainmask
+sed 's-'{$repBM}'-'{$anat}'-g' <$ofile>$tempfile				
 cp $tempfile $ofile
 
 ##replace EV directories
-sed 's-$dir/$examSub/be/onsets-{$onDir}-g' <$ofile>$tempfile
+set repEV = $dir/$examSub/be/onsets
+sed 's-'{$repEV}'-'{$onDir}'-g' <$ofile>$tempfile
 cp $tempfile $ofile
 
 ##replace MOTPARS 																		##if running McFlirt to extract MPs and adding temporal derivatives

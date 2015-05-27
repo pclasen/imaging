@@ -18,7 +18,7 @@ set examSub = $2
 set phase = $3
 set model = $4
 set examFeat = $5
-set file = $DIR/doc/asublist_test.txt
+set file = $DIR/doc/asublist_test.txt ###### CHANGE BACK AFTER DEBUGGING
 
 foreach line ("`cat $file`")
 		
@@ -41,8 +41,10 @@ foreach line ("`cat $file`")
 		mkdir $DIR/$sub/feat/designFiles/$desName
 	endif
 
-	## RUN MIG level 1
+	## RUN MIG level 1				
 	if ($1 == MIG) then
+		## MIG design files: 	../MIG/$sub/feat/designFiles/$phase/$model/$design/$designRun.fsf
+		## MIG feat: 			../MIG/$sub/feat/$phase/$model/$design/$designRun.feat
 
 		# phase 1 create design files
 		if ($phase == P1) then
@@ -54,7 +56,7 @@ foreach line ("`cat $file`")
 
 			end # for all runs
 
-		end # phase 1
+		endif # phase 1
 
 		# phase 2 create design files
 		if ($phase == P2) then
@@ -70,7 +72,11 @@ foreach line ("`cat $file`")
 
 	endif # MIG
 
+	## RUN RAP level 1
 	if ($1 == RAP) then
+
+		## MIG design files: 	../MIG/$sub/feat/designFiles/$model/$design/$designRun.fsf
+		## MIG feat: 			../MIG/$sub/feat/$model/$design/$designRun.feat
 
 		foreach run (R1 R2 R3 R4)  # 4 runs
 
@@ -83,4 +89,4 @@ foreach line ("`cat $file`")
 
 end # for each subject
 
-# end
+## end
