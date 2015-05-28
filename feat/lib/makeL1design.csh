@@ -17,7 +17,7 @@
 # set arguments
 set DIR = ~/Documents/$1
 set examSub = $2
-set file = $DIR/doc/asublist_test.txt ###### CHANGE BACK AFTER DEBUGGING
+set file = $DIR/doc/asublist_test.txt
 
 foreach line ("`cat $file`")
 		

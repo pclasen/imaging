@@ -2,7 +2,7 @@
 
 #####################################################################################
 # extract model parameters for documentation										#
-# Usage: ./L1modelParams.csh <study> <phase> <model> <design>						#
+# Usage: ./L1modelParams.csh <study> <phase> <model> <example feat>					#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
 # Ex:	 ./L1modelParams.csh MIG P1 M1 P2M1R1_un005				 					#
 # Ex:	 ./L1modelParams.csh RAP M1 M1_un005 										#
@@ -13,7 +13,8 @@
 
 # set arguments
 set DIR = ~/Documents/$1
-set docFile = $DIR/doc/L1Models/$4.txt
+set desName = `echo $4 | sed -e 's/R1//'`
+set docFile = $DIR/doc/L1Models/$desName.txt
 
 # exemplar subjects
 if ($1 == MIG) then
