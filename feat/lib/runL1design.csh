@@ -2,7 +2,7 @@
 
 #####################################################################################
 # run first level design files														#
-# Usage: ./runL1design.csh <study> <phase> <model> <design>						 	#
+# Usage: ./runL1design.csh <study> <phase> <model> <example feat>					#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
 # Ex:	 ./runL1design.csh MIG P1 M1 P2M1_un005			 							#
 # Ex:	 ./runL1design.csh RAP M1 M1_un005 											#
@@ -13,7 +13,7 @@
 
 # set arguments
 set DIR = ~/Documents/$1
-set file = $DIR/doc/asublist_test.txt ###### CHANGE BACK AFTER DEBUGGING
+set file = $DIR/doc/asublist_test.txt
 
 foreach line ("`cat $file`")
 		
@@ -26,7 +26,7 @@ foreach line ("`cat $file`")
 		# set arguments
 		set phase = $2
 		set model = $3
-		set design = $4
+		set design = `echo $4 | sed -e 's/R1//'`
 
 		# read designRun name off design file
 		foreach desRun ($DIR/$sub/feat/$phase/$model/$design/designFiles/*.fsf)
@@ -49,7 +49,7 @@ foreach line ("`cat $file`")
 
 		# set arguments
 		set model = $2
-		set design = $3
+		set design = `echo $3 | sed -e 's/R1//'`
 
 		# read designRun name off design file
 		foreach desRun ($DIR/$sub/feat/$model/$design/designFiles/*.fsf)
