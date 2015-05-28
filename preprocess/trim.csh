@@ -10,7 +10,7 @@
 
 
 set DIR = ~/Documents/$1
-set leadin = `expr $3 / 2`
+set leadin = `expr $2 / 2`
 set file = $DIR/doc/asublist.txt
 
 foreach line ("`cat $file`")
