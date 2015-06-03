@@ -20,6 +20,9 @@ if ($1 == MIG) then
 	set model = $4
 	set examFeat = $5
 
+	## check (method for overwriting a design OR running same design on sub-set of subjects)
+	~/imaging/feat/lib/checkL1.csh $study $phase $model $examFeat
+
 	## make
 	~/imaging/feat/lib/makeL1design.csh $study $examSub $phase $model $examFeat
 	## document
@@ -32,6 +35,9 @@ else if ($1 == RAP) then
 	# study specific 
 	set model = $3
 	set examFeat = $4
+
+	## check (method for overwriting a design OR running same design on sub-set of subjects)
+	~/imgaing/feat/lib/checkL1.csh $study $model $examFeat
 
 	## make
 	~/imaging/feat/lib/makeL1design.csh $study $examSub $model $examFeat

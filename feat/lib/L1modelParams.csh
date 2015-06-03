@@ -13,8 +13,6 @@
 
 # set arguments
 set DIR = ~/Documents/$1
-set desName = `echo $4 | sed -e 's/R1//'`
-set docFile = $DIR/doc/L1Models/$desName.txt
 
 # exemplar subjects
 if ($1 == MIG) then
@@ -35,27 +33,8 @@ if ($1 == RAP) then
 	set file = $desDIR/$examFSF.fsf
 endif
 
-# check before overwriting
-if (-f $docFile) then
+set docFile = $DIR/doc/L1Models/$desName.txt
 
-	set ans = ""
-	while ($ans != "y" || $ans != "n")
-
-		echo "WARNING: Documentation file exists for $desName"
-		echo "WARNING: Do you want to overwrite? (y/n)"
-		set ans = $<
-
-		if ($ans == "y") then
-			# clear docFile
-			echo "" > $docFile
-			break
-		else if ($ans == "n") then
-			exit
-		endif
-	end
-
-else
-endif
 
 #	#	#	Report parameters	#	#	#
 
