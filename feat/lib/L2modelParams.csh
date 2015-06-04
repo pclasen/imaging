@@ -29,7 +29,6 @@ if ($1 == RAP) then
 	set model = $2
 	set examFeat = $3
 	set examFSF = $4
-	set desName = `echo $examFSF | sed -e 's/FE//'`
 	set desDIR = $DIR/$sub/feat/$phase/$model/$examFeat/designFiles
 	set file = $desDIR/$examFSF.fsf
 endif
@@ -45,11 +44,12 @@ echo "FEAT Version: $version" > $docFile
 
 ##higher level modeling
 set hlm = `grep 'set fmri(mixed_yn)' $file | sed 's/set fmri(mixed_yn) //g'`
-if ($hlm == 3)
+if ($hlm == 3) then
 	set mL2 = 'Fixed Effects'
 else 
 	set mL2 = 'Other (see design file)'
-echo "Higher-level modelling: $evs" >> $docFile
+endif
+echo "Higher-level modelling: $mL2" >> $docFile
 
 ##Statistical thresholding 
 
