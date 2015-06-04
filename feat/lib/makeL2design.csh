@@ -9,10 +9,10 @@
 # p.clasen																							#
 #####################################################################################################
 
-# Requires existing design.fsf for an exemplar subject/run
-	# Set up first model version via Feat_gui
-# this script then uses the design.fsf file to apply to all runs, all subjects
-# use the tag after "P2M2R1_" to designate unique set of design files
+# Requires existing design.fsf for an exemplar subject
+	# Set up second level model version via Feat_gui
+# this script then uses the design.fsf file to apply to all subjects
+# use the tag after "P1M1FE_" to designate unique set of design files
 
 # set arguments
 set DIR = ~/Documents/$1
@@ -44,7 +44,7 @@ foreach line ("`cat $file`")
 			if ($phase == P1) then
 
 				# make unique design file for sub model run & this design, based on exemplar 
-				~/imaging/feat/lib/MIGP1L1.csh $DIR $sub $model $examFeat $examSub $examGfeat
+				~/imaging/feat/lib/MIGP1L2.csh $DIR $sub $model $examFeat $examSub $examGfeat
 
 			endif # phase 1
 
@@ -52,7 +52,7 @@ foreach line ("`cat $file`")
 			if ($phase == P2) then
 
 				# make unique design file for sub model run & this design, based on examplar
-				~/imaging/feat/lib/MIGP2L1.csh $DIR $sub $model $examFeat $examSub $examGfeat 
+				~/imaging/feat/lib/MIGP2L2.csh $DIR $sub $model $examFeat $examSub $examGfeat 
 
 			endif # for phase 2
 
@@ -79,7 +79,7 @@ foreach line ("`cat $file`")
 		else
 
 			# make unique design file for sub model run & this design, based on exemplar 
-			~/imaging/feat/lib/RAPL1.csh $DIR $sub $model $examFeat $examSub $examGfeat 
+			~/imaging/feat/lib/RAPL2.csh $DIR $sub $model $examFeat $examSub $examGfeat 
 		
 		endif # if the design exists
 
