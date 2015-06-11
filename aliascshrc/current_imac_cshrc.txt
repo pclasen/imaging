@@ -20,6 +20,8 @@ set path = ($path ~/imaging/preprocess)
 set path = ($path ~/imaging/feat)
 set path = ($path ~/imaging/feat/lib)
 set path = ($path ~/imaging/behavior)
+set path = ($path ~/imaging/behavior/MIG)
+set path = ($path ~/imaging/behavior/RAP)
 set path = ($path ~/github/admin)
 
 ### copy .cshrc and .alias to imaging dirctory

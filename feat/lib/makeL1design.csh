@@ -37,7 +37,7 @@ foreach line ("`cat $file`")
 
 
 		# make the design files if the do not exist
-		if (-d $DIR/$sub/feat/$phase/$model/$desName) then
+		if (-d $DIR/$sub/feat/$phase/$model/$desName/designFiles) then
 			
 			# do nothing
 
