@@ -4,8 +4,8 @@
 # Wrapper to make, run, and document 2nd level FEAT designs								#
 # Usage: ./L2.csh <study> <example sub> <phase> <model> <L1 design> <L2 design>			#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES										#
-# Ex:	 ./L1.csh MIG MIG-2722 P1 M1 P1M1_STC_U005_NCR P1M1FE_C05						#
-# Ex:	 ./L1.csh RAP RAP-???? M1 M1_STC_U005_NCR M1FE_C05								#
+# Ex:	 ./L2.csh MIG MIG-2722 P1 M1 P1M1_STC_U005_NCR P1M1FE_C05						#
+# Ex:	 ./L2.csh RAP RAP-???? M1 M1_STC_U005_NCR M1FE_C05								#
 # p.clasen																				#
 #########################################################################################
 
