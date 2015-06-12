@@ -1,63 +1,66 @@
 #! /bin/csh -ef
 
-#############################################
-# subroutine for level1Design.csh			#
-# Usage: ./RAPlevel1.csh <dir> <sub> <run>	#
-# p.clasen									#
-#############################################
+#################################################################################
+# subroutine for level1Design.csh												#
+# Usage: ./RAPL1.csh <dir> <sub> <model> <run> <desName> <examSub> <examFeat>	#
+# p.clasen																		#
+#################################################################################
 
-# arguments
-set dir = $2
-set sub = $3
+# set arguments locally 
+set dir = $1
+set sub = $2
+set mod = $3
 set run = $4
-# directories
+set desName = $5
+set examSub = $6
+set examFeat = $7
+
+# subject level directories
 set fun = $dir/$sub/fun
 set feat = $dir/$sub/feat
-set design = $feat/designFiles/
+set design = $feat/M1$mod/$desName/designFiles
 
-#sets your feat dir:
-set feat_dir = $feat/$phase$model$run.feat
-
-#sets your fmri dir:
-set fmri_dir = $fun
+# generate name for new copy of example design
+set  desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
 
 #sets your output file:
-set ofile = $design/$run.fsf
+set ofile = $design/$desRun.fsf		 													
 
 #set temp file:
-set tempfile = $design/design-temp.txt
+set tempfile = $design/design-temp.txt													
 
 #sets your 4D feat data:
-set FourD = $fmri_dir/$run\_trim.nii.gz
-
-#sets your anatomical
-set anat = $dir/$sub/ana/FST1/mri/brainmask.nii.gz
+set FourD = $fun/$run\_trim.nii.gz																									
 
 #finds your total volumes
 set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
 set npts = $volumes[1]
 
 ##Make Design File
-cp $design/design-template.txt $ofile
+cp $dir/$examSub/feat/M1$mod/$desName/$examFeat.feat/design.fsf $ofile								
 
-##replace output directory
-sed s-OUTPUT_DIRECTORY-{$feat_dir}-g <$ofile>$tempfile
+##replace subject ID
+sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile
 cp $tempfile $ofile
 
-##replace VOLUMES
-sed s-VOLUMES-{$npts}-g <$ofile>$tempfile
+##replace run
+sed -e 's/R1/'{$run}'/g' <$ofile>$tempfile 
 cp $tempfile $ofile
 
-##replace 4D-DATA
-sed s-4D_DATA-{$FourD}-g <$ofile>$tempfile
+##replace design name
+sed -e 's/'{$examFeat}'/'{$desRun}'/g' <$ofile>$tempfile
 cp $tempfile $ofile
 
-##replace BRAINMASK
-sed s-BRAINMASK-{$anat}-g <$ofile>$tempfile
+##replace VOLUMES                                        
+sed -e 's/fmri(npts) 165/fmri(npts) '{$npts}'/g' <$ofile>$tempfile						##R1 has 165 volumes; make variable because run 2 has 149
 cp $tempfile $ofile
 
-##replace MOTPARS 
-# # sed s-MOTPARS-{$design/motpars}-g <$ofile>$tempfile
+##replace Featwatcher
+sed -e 's/fmri(featwatcher_yn) 1/fmri(featwatcher_yn) 0/g' <$ofile>$tempfile	
+cp $tempfile $ofile
+
+##replace MOTPARS 																		##if running McFlirt to extract MPs and adding temporal derivatives
+# # sed 's-MOTPARS-{$design/motpars}-g' <$ofile>$tempfile
 # # cp $tempfile $ofile
 
 ##remove tempfile

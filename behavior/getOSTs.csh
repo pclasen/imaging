@@ -11,7 +11,7 @@
 set DIR = ~/Documents/$1
 set trim = $2 
 set file = $DIR/doc/asublist.txt
-set behave = ~/imaging/behavior
+set behave = ~/imaging/behavior/$1
 set log = $DIR/doc/junk.txt
 
 if ($1 == MIG) then
@@ -49,6 +49,32 @@ if ($1 == MIG) then
 			matlab -nodisplay -nojvm -nosplash -r "MIG_P2_onsets_M2('$sub',$trim);exit;" > $log
 		endif
 
+	end # for loop
+endif
+cd ~
+
+if ($1 == RAP) then
+	foreach line ("`cat $file`")
+
+		set sub = "$line"
+		set be = $DIR/$sub/be
+		set on = $be/onsets
+
+
+		# phase 1 - model 1 (event related)
+		if (-d $on/M1) then
+		else
+			cd $behave
+			matlab -nodisplay -nojvm -nosplash -r "RAP_onsets_M1('$sub',$trim);exit;" > $log
+		endif
+
+		# phase 1 - model 2 (block design)
+		if (-d $on/M2) then
+		else
+			cd $behave
+			matlab -nodisplay -nojvm -nosplash -r "RAP_onsets_M2('$sub',$trim);exit;" > $log
+		endif
+		
 	end # for loop
 endif
 cd ~
