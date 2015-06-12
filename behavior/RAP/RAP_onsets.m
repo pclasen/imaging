@@ -33,15 +33,36 @@ rate = dat.rate - trim;
 condition = {'C2+';'C2-';'C2o';'D1+';'D1-';'D1o';'I2+';'I2-';'I2o';'D2+';'D2-';'D2o';'R+';'R-';'Ro';'C6+';'C6-';'C6o';'I6+';'I6-';'I6o'};
 
 for i = 1:4 % one for each run
-    for j = 1: length(val)
+    for j = 1:length(val)
         cue.(val{j}) = cue(strcmp(val{j},valence) & ~isnan(cue) & dat.block == i);
         d1.(val{j}) = d1(strcmp(val{j},valence) & ~isnan(d1) & dat.block == i);
         image.(val{j}) = image(strcmp(val{j},valence) & ~isnan(image) & dat.block == i);
         d2.(val{j}) = d2(strcmp(val{j},valence) & ~isnan(d2) & dat.block == i);
         rate.(val{j}) = rate(strcmp(val{j},valence) & ~isnan(rate) & dat.block == i);
-        if strcmp('positive',val{j} == 1
-        elseif strcmp('negative',val{j} == 1
-        elseif strcmp('neutral',val{j} == 1
+        
+        % rating (1 = pos; -1 = neg; 0 = neutral; -99 = no response)
+        noResp.(val{j}) = length(dat.rating(dat.rating==-99 & strcmp(val{j},valence) & dat.block == i));
+        
+        % isloate ratings per valence per run
+        ratingValence = dat.rating(strcmp(val{j},valence) & ~isnan & dat.block == i);
+        
+        % code stings as integers to compare against
+        %valNumeric = (strcmp(val{j},valence) & dat.block == i);
+        
+        % dummy array to compare, start with ones
+        % valCompare = ones(length(ratingValence),1);
+        
+        if strcmp('positive',val{j}) == 1
+            valCompare = ones(length(ratingValence),1);
+            compare = mean(ratingValence==valCompare);
+        elseif strcmp('negative',val{j}) == 1
+            valCompare = ones(length(ratingValence),1)*-1;
+            compare
+        
+        
+        
+        for h = 1:length(rating.(val{j}))
+            coherence.(val{j}) = 
         end
                     
     end
@@ -73,6 +94,9 @@ for i = 1:4 % one for each run
    
         % round to whole integer
         onsets = round(onsets);
+        
+        % non-reponses
+        NR(i) = noResp;
         
         % place onsets in unique run folders
         subdir = [dir,sub,'/be/onsets/'];
