@@ -2,10 +2,10 @@
 
 #####################################################################################
 # overwrite or subset run level 1 design making scripts (e.g., L1.csh)				#
-# Usage: ./L1.csh <study> <phase> <model> <example feat> 							#
+# Usage: ./checkL1.csh <study> <phase> <model> <example feat> 						#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./L1.csh MIG P1 M1 P1M1R1_un005 											#
-# Ex:	 ./L1.csh RAP M1 M1R1_un005 												#
+# Ex:	 ./checkL1.csh MIG P1 M1 P1M1R1_un005 										#
+# Ex:	 ./checkL1.csh RAP M1 M1R1_un005 											#
 # p.clasen																			#
 #####################################################################################
 
@@ -109,7 +109,7 @@ else if ($1 == RAP) then
 	# study specific 
 	set model = $2
 	set examFeat = $3
-
+	
 	# design name and documentation file
 	set desName = `echo $examFeat | sed -e 's/R1//'`
 	set docFile = $DIR/doc/L1Models/$desName.txt

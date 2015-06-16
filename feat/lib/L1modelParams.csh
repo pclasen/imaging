@@ -4,8 +4,8 @@
 # extract model parameters for documentation										#
 # Usage: ./L1modelParams.csh <study> <phase> <model> <example feat>					#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./L1modelParams.csh MIG P1 M1 P2M1R1_un005				 					#
-# Ex:	 ./L1modelParams.csh RAP M1 M1_un005 										#
+# Ex:	 ./L1modelParams.csh MIG MIG-2722 P1 M1 P2M1R1_un005				 		#
+# Ex:	 ./L1modelParams.csh RAP RAP-2680 M1 M1_un005 								#
 # p.clasen																			#
 #####################################################################################
 
@@ -16,20 +16,20 @@ set DIR = ~/Documents/$1
 
 # exemplar subjects
 if ($1 == MIG) then
-	set sub = MIG-2722
-	set phase = $2
-	set model = $3
-	set examFSF = $4
+	set sub = $2
+	set phase = $3
+	set model = $4
+	set examFSF = $5
 	set desName = `echo $examFSF | sed -e 's/R1//'`
 	set desDIR = $DIR/$sub/feat/$phase/$model/$desName/designFiles
 	set file = $desDIR/$examFSF.fsf
 endif
 if ($1 == RAP) then
-	set sub == RAP-2680
-	set model = $2
-	set examFSF = $3
+	set sub = $2
+	set model = $3
+	set examFSF = $4
 	set desName = `echo $examFSF | sed -e 's/R1//'`
-	set desDIR = $DIR/$sub/feat/$phase/$model/$desName/designFiles
+	set desDIR = $DIR/$sub/feat/$model/$desName/designFiles
 	set file = $desDIR/$examFSF.fsf
 endif
 

@@ -18,10 +18,10 @@ set examFeat = $7
 # subject level directories
 set fun = $dir/$sub/fun
 set feat = $dir/$sub/feat
-set design = $feat/M1$mod/$desName/designFiles
+set design = $feat/$mod/$desName/designFiles
 
 # generate name for new copy of example design
-set  desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
+set desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
 
 #sets your output file:
 set ofile = $design/$desRun.fsf		 													
@@ -37,7 +37,7 @@ set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
 set npts = $volumes[1]
 
 ##Make Design File
-cp $dir/$examSub/feat/M1$mod/$desName/$examFeat.feat/design.fsf $ofile								
+cp $dir/$examSub/feat/$mod/$desName/$examFeat.feat/design.fsf $ofile								
 
 ##replace subject ID
 sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile

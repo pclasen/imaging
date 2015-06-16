@@ -109,6 +109,7 @@ else if ($1 == RAP) then
 	# study specific 
 	set model = $2
 	set examFeat = $3
+	set examGfeat = $4
 
 	# design name and documentation file
 	set docFile = $DIR/doc/L2Models/$examGfeat.txt

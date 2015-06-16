@@ -4,8 +4,8 @@
 # extract model parameters for documentation										#
 # Usage: ./L2modelParams.csh <study> <phase> <model> <example gfeat>				#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./L2modelParams.csh MIG P1 M1 P1M1_STC_U005_NCR P1M1FE_C05				 	#
-# Ex:	 ./L2modelParams.csh RAP M1 M1_STC_U005_NCR P1M1FE_C05						#
+# Ex:	 ./L2modelParams.csh MIG P1 MIG-2722 M1 P1M1_STC_U005_NCR P1M1FE_C05	 	#
+# Ex:	 ./L2modelParams.csh RAP M1 RAP-2680 M1_STC_U005_NCR P1M1FE_C05				#
 # p.clasen																			#
 #####################################################################################
 
@@ -16,20 +16,20 @@ set DIR = ~/Documents/$1
 
 # exemplar subjects
 if ($1 == MIG) then
-	set sub = MIG-2722
-	set phase = $2
-	set model = $3
-	set examFeat = $4
-	set examFSF = $5
+	set sub = $2
+	set phase = $3
+	set model = $4
+	set examFeat = $5
+	set examFSF = $6
 	set desDIR = $DIR/$sub/feat/$phase/$model/$examFeat/designFiles
 	set file = $desDIR/$examFSF.fsf
 endif
 if ($1 == RAP) then
-	set sub == RAP-2680
-	set model = $2
-	set examFeat = $3
-	set examFSF = $4
-	set desDIR = $DIR/$sub/feat/$phase/$model/$examFeat/designFiles
+	set sub = $2
+	set model = $3
+	set examFeat = $4
+	set examFSF = $5
+	set desDIR = $DIR/$sub/feat/$model/$examFeat/designFiles
 	set file = $desDIR/$examFSF.fsf
 endif
 

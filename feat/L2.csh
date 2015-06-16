@@ -27,7 +27,7 @@ if ($1 == MIG) then
 	## make
 	~/imaging/feat/lib/makeL2design.csh $study $examSub $phase $model $examFeat $examGfeat
 	## document
-	~/imaging/feat/lib/L2modelParams.csh $study $phase $model $examFeat $examGfeat
+	~/imaging/feat/lib/L2modelParams.csh $study $examSub $phase $model $examFeat $examGfeat
 	## run
 	~/imaging/feat/lib/runL2design.csh $study $phase $model $examFeat $examGfeat
 
@@ -35,16 +35,16 @@ else if ($1 == RAP) then
 
 	# study specific 
 	set model = $3
-	set examGfeat = $4
-	set examFeat = $5
+	set examFeat = $4
+	set examGfeat = $5
 
 	## check (method for overwriting a design OR running same design on sub-set of subjects)
-	~/imgaing/feat/lib/checkL2.csh $study $model $examFeat $examGfeat
+	~/imaging/feat/lib/checkL2.csh $study $model $examFeat $examGfeat
 
 	## make
 	~/imaging/feat/lib/makeL2design.csh $study $examSub $model $examFeat $examGfeat 
 	## document
-	~/imaging/feat/lib/L2modelParams.csh $study $model $examFeat $examGfeat
+	~/imaging/feat/lib/L2modelParams.csh $study $examSub $model $examFeat $examGfeat
 	## run
 	~/imaging/feat/lib/runL2design.csh $study $model $examFeat $examGfeat
 

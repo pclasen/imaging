@@ -85,7 +85,7 @@ foreach line ("`cat $file`")
 		set desName = `echo $examFeat | sed -e 's/R1//'`
 
 		# make the design files if the do not exist
-		if (-d $DIR/$sub/feat/$model/$desName) then
+		if (-d $DIR/$sub/feat/$model/$desName/designFiles) then
 			
 			# do nothing
 
