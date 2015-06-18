@@ -2,10 +2,10 @@
 
 #####################################################################################
 # overwrite or subset run level 1 design making scripts (e.g., L1.csh)				#
-# Usage: ./checkL1.csh <study> <phase> <model> <example feat> 						#
+# Usage: ./checkGLM.csh <study> <phase> <model> <example feat> 						#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./checkL1.csh MIG P1 M1 P1M1R1_un005 										#
-# Ex:	 ./checkL1.csh RAP M1 M1R1_un005 											#
+# Ex:	 ./checkGLM.csh MIG P1 M1 R1_U05 						 					#
+# Ex:	 ./checkGLM.csh RAP M1 R1_U05 												#
 # p.clasen																			#
 #####################################################################################
 
@@ -22,8 +22,9 @@ if ($1 == MIG) then
 	set examFeat = $4
 
 	# design name and documentation file
-	set desName = `echo $examFeat | sed -e 's/R1//'`
-	set docFile = $DIR/doc/L1Models/$desName.txt
+	set desStub = `echo $examFeat | sed -e 's/R1//'`
+	set desName = $phase$model$desStub
+	set docFile = $DIR/doc/GLMs/$desName.txt
 		
 	if (-f $docFile) then
 		set ans = ""
@@ -111,8 +112,9 @@ else if ($1 == RAP) then
 	set examFeat = $3
 	
 	# design name and documentation file
-	set desName = `echo $examFeat | sed -e 's/R1//'`
-	set docFile = $DIR/doc/L1Models/$desName.txt
+	set desStub = `echo $examFeat | sed -e 's/R1//'`
+	set desName = $model$desStub
+	set docFile = $DIR/doc/GLMs/$desName.txt
 
 	if (-f $docFile) then
 		set ans = ""

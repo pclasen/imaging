@@ -2,10 +2,10 @@
 
 #####################################################################################
 # Wrapper to make, run, and document 1st level FEAT designs							#
-# Usage: ./L1.csh <study> <example sub> <phase> <model> <example feat> 				#
+# Usage: ./glm.csh <study> <example sub> <phase> <model> <example feat> 			#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./L1.csh MIG MIG-2722 P1 M1 P1M1R1_un005 									#
-# Ex:	 ./L1.csh RAP RAP-???? M1 M1R1_un005 										#
+# Ex:	 ./glm.csh MIG MIG-2722 P1 M1 R1_U05 										#
+# Ex:	 ./glm.csh RAP RAP-???? M1 R1_U05	 										#
 # p.clasen																			#
 #####################################################################################
 
@@ -21,14 +21,14 @@ if ($1 == MIG) then
 	set examFeat = $5
 
 	## check (method for overwriting a design OR running same design on sub-set of subjects)
-	~/imaging/feat/lib/checkL1.csh $study $phase $model $examFeat
+	~/imaging/feat/lib/GLMcheck.csh $study $phase $model $examFeat
 
 	## make
-	~/imaging/feat/lib/makeL1design.csh $study $examSub $phase $model $examFeat
+	~/imaging/feat/lib/GLMmakeFSF.csh $study $examSub $phase $model $examFeat
 	## document
-	~/imaging/feat/lib/L1modelParams.csh $study $examSub $phase $model $examFeat
+	~/imaging/feat/lib/GLMparams.csh $study $examSub $phase $model $examFeat
 	## run
-	~/imaging/feat/lib/runL1design.csh $study $phase $model $examFeat
+	~/imaging/feat/lib/GLMrunFSF.csh $study $phase $model $examFeat
 
 else if ($1 == RAP) then
 
@@ -37,14 +37,14 @@ else if ($1 == RAP) then
 	set examFeat = $4
 	
 	## check (method for overwriting a design OR running same design on sub-set of subjects)
-	~/imaging/feat/lib/checkL1.csh $study $model $examFeat
+	~/imaging/feat/lib/GLMcheck.csh $study $model $examFeat
 
 	## make
-	~/imaging/feat/lib/makeL1design.csh $study $examSub $model $examFeat
+	~/imaging/feat/lib/GLMmakeFSF.csh $study $examSub $model $examFeat
 	## document
-	~/imaging/feat/lib/L1modelParams.csh $study $examSub $model $examFeat
+	~/imaging/feat/lib/GLMparams.csh $study $examSub $model $examFeat
 	## run
-	~/imaging/feat/lib/runL1design.csh $study $model $examFeat
+	~/imaging/feat/lib/GLMrunFSF.csh $study $model $examFeat
 
 endif
 

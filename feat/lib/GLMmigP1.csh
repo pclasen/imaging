@@ -1,8 +1,8 @@
 #! /bin/csh -ef
 
 #################################################################################
-# subroutine for level1Design.csh												#
-# Usage: ./RAPL1.csh <dir> <sub> <model> <run> <desName><examSub> <examFeat>	#
+# subroutine for GLMmakeFSF.csh													#
+# Usage: ./GLMmigP1.csh <dir> <sub> <model> <run> <examSub> <examFeat>			#
 # p.clasen																		#
 #################################################################################
 
@@ -11,17 +11,16 @@ set dir = $1
 set sub = $2
 set mod = $3
 set run = $4
-set desName = $5
-set examSub = $6
-set examFeat = $7
+set examSub = $5
+set examFeat = $6
 
 # subject level directories
 set fun = $dir/$sub/fun
 set feat = $dir/$sub/feat
-set design = $feat/$mod/$desName/designFiles
+set design = $feat/P1/$mod/glm/designFiles
 
 # generate name for new copy of example design
-set desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
+set  desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
 
 #sets your output file:
 set ofile = $design/$desRun.fsf		 													
@@ -30,14 +29,14 @@ set ofile = $design/$desRun.fsf
 set tempfile = $design/design-temp.txt													
 
 #sets your 4D feat data:
-set FourD = $fun/$run\_trim.nii.gz																									
+set FourD = $fun/P1$run\_trim.nii.gz																									
 
 #finds your total volumes
 set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
 set npts = $volumes[1]
 
 ##Make Design File
-cp $dir/$examSub/feat/$mod/$desName/$examFeat.feat/design.fsf $ofile								
+cp $dir/$examSub/feat/P1/$mod/glm/$examFeat.feat/design.fsf $ofile								
 
 ##replace subject ID
 sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile

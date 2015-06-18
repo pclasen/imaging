@@ -2,7 +2,7 @@
 
 #################################################################################
 # subroutine for level1Design.csh												#
-# Usage: ./RAPL1.csh <dir> <sub> <model> <run> <desName><examSub> <examFeat>	#
+# Usage: ./RAPL1.csh <dir> <sub> <model> <run> <examSub> <examFeat>				#
 # p.clasen																		#
 #################################################################################
 
@@ -11,14 +11,13 @@ set dir = $1
 set sub = $2
 set mod = $3
 set run = $4
-set desName = $5
-set examSub = $6
-set examFeat = $7
+set examSub = $5
+set examFeat = $6
 
 # subject level directories
 set fun = $dir/$sub/fun
 set feat = $dir/$sub/feat
-set design = $feat/$mod/$desName/designFiles
+set design = $feat/$mod/glm/designFiles
 
 # generate name for new copy of example design
 set desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
@@ -37,7 +36,7 @@ set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
 set npts = $volumes[1]
 
 ##Make Design File
-cp $dir/$examSub/feat/$mod/$desName/$examFeat.feat/design.fsf $ofile								
+cp $dir/$examSub/feat/$mod/glm/$examFeat.feat/design.fsf $ofile								
 
 ##replace subject ID
 sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile
