@@ -1,11 +1,11 @@
 #! /bin/csh -ef
 
 #####################################################################################
-# overwrite or subset run level 1 design making scripts (e.g., L1.csh)				#
-# Usage: ./GLMcheck.csh <study> <phase> <model> <example feat> 						#
+# overwrite or subset run prestats design making scripts 							#
+# Usage: ./PScheck.csh <study> <phase> <model> <example feat> 						#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./GLMcheck.csh MIG P1 M1 R1_U05 						 					#
-# Ex:	 ./GLMcheck.csh RAP M1 R1_U05 												#
+# Ex:	 ./PScheck.csh MIG P1 M1 								 					#
+# Ex:	 ./PScheck.csh RAP M1 														#
 # p.clasen																			#
 #####################################################################################
 
@@ -19,12 +19,10 @@ if ($1 == MIG) then
 	# study specific 
 	set phase = $2
 	set model = $3
-	set examFeat = $4
 
 	# design name and documentation file
-	set desStub = `echo $examFeat | sed -e 's/R1//'`
-	set desName = $phase$model$desStub
-	set docFile = $DIR/doc/GLMs/$desName.txt
+	set desName = $phase$model
+	set docFile = $DIR/doc/PS/$desName.txt
 		
 	if (-f $docFile) then
 		set ans = ""
@@ -81,8 +79,8 @@ if ($1 == MIG) then
 									set $sub = "$line"
 
 									# delete all model files
-									echo "NOTE: You are deleting $examFeat from every subject's $phase $model glm directory."
-									rm -rf $DIR/$sub/feat/$phase/$model/glm/$examFeat
+									echo "NOTE: You are deleting all prestats .feat directories from every subject's $phase $model prestats directory."
+									rm -rf $DIR/$sub/feat/$phase/$model/prestats/*.feat
 
 								end # for each subject
 
@@ -109,12 +107,10 @@ else if ($1 == RAP) then
 
 	# study specific 
 	set model = $2
-	set examFeat = $3
 	
 	# design name and documentation file
-	set desStub = `echo $examFeat | sed -e 's/R1//'`
-	set desName = $model$desStub
-	set docFile = $DIR/doc/GLMs/$desName.txt
+	set desName = $phase$model
+	set docFile = $DIR/doc/PS/$desName.txt
 
 	if (-f $docFile) then
 		set ans = ""
@@ -171,8 +167,8 @@ else if ($1 == RAP) then
 									set $sub = "$line"
 
 									# delete all model files
-									echo "NOTE: You are deleting $examFeat from every subject's $model glm directory."
-									rm -rf $DIR/$sub/feat/$model/glm/$examFeat
+									echo "NOTE: You are deleting all prestats .feat directories from every subject's $model prestats directory."
+									rm -rf $DIR/$sub/feat/$model/prestats/*.feat
 
 								end # for each subject
 								

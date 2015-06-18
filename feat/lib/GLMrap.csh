@@ -2,7 +2,7 @@
 
 #################################################################################
 # subroutine for level1Design.csh												#
-# Usage: ./RAPL1.csh <dir> <sub> <model> <run> <examSub> <examFeat>				#
+# Usage: ./GLMrap.csh <dir> <sub> <model> <run> <examSub> <examFeat>			#
 # p.clasen																		#
 #################################################################################
 
@@ -31,10 +31,6 @@ set tempfile = $design/design-temp.txt
 #sets your 4D feat data:
 set FourD = $fun/$run\_trim.nii.gz																									
 
-#finds your total volumes
-set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
-set npts = $volumes[1]
-
 ##Make Design File
 cp $dir/$examSub/feat/$mod/glm/$examFeat.feat/design.fsf $ofile								
 
@@ -48,10 +44,6 @@ cp $tempfile $ofile
 
 ##replace design name
 sed -e 's/'{$examFeat}'/'{$desRun}'/g' <$ofile>$tempfile
-cp $tempfile $ofile
-
-##replace VOLUMES                                        
-sed -e 's/fmri(npts) 165/fmri(npts) '{$npts}'/g' <$ofile>$tempfile						##R1 has 165 volumes; make variable because run 2 has 149
 cp $tempfile $ofile
 
 ##replace Featwatcher

@@ -1,11 +1,11 @@
 #! /bin/csh -ef
 
 #####################################################################################
-# overwrite or subset run level 1 design making scripts (e.g., L1.csh)				#
-# Usage: ./GLMcheck.csh <study> <phase> <model> <example feat> 						#
+# overwrite or subset run level 2 design making scripts (e.g., L2.csh)				#
+# Usage: ./FEcheck.csh <study> <phase> <model> <L2 design> 							#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./GLMcheck.csh MIG P1 M1 R1_U05 						 					#
-# Ex:	 ./GLMcheck.csh RAP M1 R1_U05 												#
+# Ex:	 ./FEcheck.csh MIG P1 M1 FE_U05 											#
+# Ex:	 ./FEcheck.csh RAP M1 FE_U05												#
 # p.clasen																			#
 #####################################################################################
 
@@ -19,19 +19,17 @@ if ($1 == MIG) then
 	# study specific 
 	set phase = $2
 	set model = $3
-	set examFeat = $4
+	set examGfeat = $4
 
 	# design name and documentation file
-	set desStub = `echo $examFeat | sed -e 's/R1//'`
-	set desName = $phase$model$desStub
-	set docFile = $DIR/doc/GLMs/$desName.txt
+	set docFile = $DIR/doc/FEs/$phase$model$examGfeat.txt
 		
 	if (-f $docFile) then
 		set ans = ""
 			
 			while ($ans != "1" || $ans != "2")
 
-				echo "WARNING: This model ($desName) has been run on some or all subjects."
+				echo "WARNING: This model ($examGfeat) has been run on some or all subjects."
 				echo "WARNING: Do you want to run the same model on a sub-set of subjects? (press 1)"
 				echo "WARNING: Or, do you want to overwrite design files are re-run this model on the full list (press 2)?"
 				
@@ -43,14 +41,14 @@ if ($1 == MIG) then
 
 						while ($ready != "y")
 							
-							echo "NOTE: $desName must be manually deleted from the feat directory of subjects in the sub-set."
+							echo "NOTE: $examGfeat.gfeat must be manually deleted from the feat directory of subjects in the sub-set."
 							echo "Ready to continue? (y)"
 
 							set ready = $<
 
 							if ($ready == "y") then
 
-								echo "Running $desName on sub-set of subjects."
+								echo "Running $examGfeat on sub-set of subjects."
 								break
 
 							else
@@ -65,7 +63,7 @@ if ($1 == MIG) then
 
 						while ($ready != "y")
 							
-							echo "WARNING: All $desName models will be deleted."
+							echo "WARNING: All $examGfeat models will be deleted."
 							echo "WARNING: Are you sure? (y/n)"
 
 							set ready = %<
@@ -74,20 +72,20 @@ if ($1 == MIG) then
 
 								# clear docFile
 								echo "" > $docFile
-								echo "NOTE: $desName model parameters are removed from documentation folder."
+								echo "NOTE: $examGfeat model parameters are removed from documentation folder."
 
 								foreach line ("`cat $file`")
 
 									set $sub = "$line"
 
 									# delete all model files
-									echo "NOTE: You are deleting $examFeat from every subject's $phase $model glm directory."
-									rm -rf $DIR/$sub/feat/$phase/$model/glm/$examFeat
+									echo "NOTE: You are deleting $examGfeat.gfeat from every subject's feat directory."
+									rm -rf $DIR/$sub/feat/$phase/$model/glm/$examGfeat.gfeat
 
 								end # for each subject
 
-								echo "Finished removing previous iteration of $desName."
-								echo "Running new $desName on all subjects."
+								echo "Finished removing previous iteration of $examGfeat."
+								echo "Running new $examGfeat on all subjects."
 								break
 
 							else if ($ready == "n")
@@ -109,19 +107,17 @@ else if ($1 == RAP) then
 
 	# study specific 
 	set model = $2
-	set examFeat = $3
-	
+	set examGfeat = $3
+
 	# design name and documentation file
-	set desStub = `echo $examFeat | sed -e 's/R1//'`
-	set desName = $model$desStub
-	set docFile = $DIR/doc/GLMs/$desName.txt
+	set docFile = $DIR/doc/L2Models/$examGfeat.txt
 
 	if (-f $docFile) then
 		set ans = ""
 			
 			while ($ans != "1" || $ans != "2")
 
-				echo "WARNING: This model ($desName) has been run on some or all subjects."
+				echo "WARNING: This model ($examGfeat) has been run on some or all subjects."
 				echo "WARNING: Do you want to run the same model on a sub-set of subjects? (press 1)"
 				echo "WARNING: Or, do you want to overwrite design files are re-run this model on the full list (press 2)?"
 				
@@ -133,14 +129,14 @@ else if ($1 == RAP) then
 
 						while ($ready != "y")
 							
-							echo "NOTE: $desName must be manually deleted from the feat directory of subjects in the sub-set."
+							echo "NOTE: $examGfeat must be manually deleted from the feat directory of subjects in the sub-set."
 							echo "Ready to continue? (y)"
 
 							set ready = $<
 
 							if ($ready == "y") then
 
-								echo "Running $desName on sub-set of subjects."
+								echo "Running $examGfeat on sub-set of subjects."
 								break
 
 							else
@@ -155,7 +151,7 @@ else if ($1 == RAP) then
 
 						while ($ready != "y")
 							
-							echo "WARNING: All $desName models will be deleted."
+							echo "WARNING: All $examGfeat models will be deleted."
 							echo "WARNING: Are you sure? (y/n)"
 
 							set ready = %<
@@ -164,20 +160,20 @@ else if ($1 == RAP) then
 
 								# clear docFile
 								echo "" > $docFile
-								echo "NOTE: $desName model parameters are removed from documentation folder."
+								echo "NOTE: $examGfeat model parameters are removed from documentation folder."
 
 								foreach line ("`cat $file`")
 
 									set $sub = "$line"
 
 									# delete all model files
-									echo "NOTE: You are deleting $examFeat from every subject's $model glm directory."
-									rm -rf $DIR/$sub/feat/$model/glm/$examFeat
+									echo "NOTE: You are deleting $examGfeat.gfeat from every subject's feat directory."
+									rm -rf $DIR/$sub/feat/$model/glm/$examGfeat.gfeat
 
 								end # for each subject
 								
-								echo "Finished removing previous iteration of $desName."
-								echo "Running new $desName on all subjects."
+								echo "Finished removing previous iteration of $examGfeat."
+								echo "Running new $examGfeat on all subjects."
 								break
 
 							else if ($ready == "n")

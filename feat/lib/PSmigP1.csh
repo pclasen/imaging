@@ -1,8 +1,8 @@
 #! /bin/csh -ef
 
 #################################################################################
-# subroutine for GLMmakeFSF.csh													#
-# Usage: ./GLMmigP1.csh <dir> <sub> <model> <run> <examSub> <examFeat>			#
+# subroutine for PSmakeFSF.csh													#
+# Usage: ./PSmigP1.csh <dir> <sub> <model> <run> <examSub> 						#
 # p.clasen																		#
 #################################################################################
 
@@ -12,15 +12,14 @@ set sub = $2
 set mod = $3
 set run = $4
 set examSub = $5
-set examFeat = $6
 
 # subject level directories
 set fun = $dir/$sub/fun
 set feat = $dir/$sub/feat
-set design = $feat/P1/$mod/glm/designFiles
+set design = $feat/P1/$mod/prestats/designFiles
 
 # generate name for new copy of example design
-set  desRun = `echo $examFeat | sed -e 's/R1/'{$run}'/g'`
+set  desRun = $run
 
 #sets your output file:
 set ofile = $design/$desRun.fsf		 													
@@ -36,7 +35,7 @@ set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
 set npts = $volumes[1]
 
 ##Make Design File
-cp $dir/$examSub/feat/P1/$mod/glm/$examFeat.feat/design.fsf $ofile								
+cp $dir/$examSub/feat/P1/$mod/glm/R1.feat/design.fsf $ofile								
 
 ##replace subject ID
 sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile

@@ -2,10 +2,10 @@
 
 #####################################################################################
 # run second level design files														#
-# Usage: ./runL2design.csh <study> <phase> <model> <level1 design> <level2 design>	#
+# Usage: ./FErunFSF.csh <study> <phase> <model> <level2 design>						#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./runL2design.csh MIG P1 M1 P1M1_STC_U005_NCR P1M1FE_C05					#
-# Ex:	 ./runL2design.csh RAP M1 M1_STC_U005_NCF P1M1FE_C05 						#
+# Ex:	 ./FErunFSF.csh MIG P1 M1 FE_U05											#
+# Ex:	 ./FErunFSF.csh RAP M1 FE_U05 												#
 # p.clasen																			#
 #####################################################################################
 
@@ -13,7 +13,7 @@
 
 # set arguments
 set DIR = ~/Documents/$1
-set file = $DIR/doc/asublist.txt
+set file = $DIR/doc/asublist_test.txt
 
 foreach line ("`cat $file`")
 		

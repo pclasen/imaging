@@ -27,8 +27,12 @@ if ($1 == MIG) then
 	~/imaging/feat/lib/GLMmakeFSF.csh $study $examSub $phase $model $examFeat
 	## document
 	~/imaging/feat/lib/GLMparams.csh $study $examSub $phase $model $examFeat
+	
+	## port over pre-stats data
+	~/imaging/feat/lib/GLMcpPrestats.csh $study $phase $model $examFeat
+
 	## run
-	~/imaging/feat/lib/GLMrunFSF.csh $study $phase $model $examFeat
+	~/imaging/feat/lib/GLMrunFSF.csh $study $phase $model 
 
 else if ($1 == RAP) then
 
@@ -44,7 +48,7 @@ else if ($1 == RAP) then
 	## document
 	~/imaging/feat/lib/GLMparams.csh $study $examSub $model $examFeat
 	## run
-	~/imaging/feat/lib/GLMrunFSF.csh $study $model $examFeat
+	~/imaging/feat/lib/GLMrunFSF.csh $study $model
 
 endif
 

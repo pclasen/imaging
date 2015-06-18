@@ -2,10 +2,10 @@
 
 #####################################################################################
 # Wrapper to make, run, and document 1st level FEAT designs							#
-# Usage: ./L1.csh <study> <example sub> <phase> <model> <example feat> 				#
+# Usage: ./prestats.csh <study> <example sub> <phase> <model>  						#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
-# Ex:	 ./L1.csh MIG MIG-2722 P1 M1 P1M1R1_un005 									#
-# Ex:	 ./L1.csh RAP RAP-???? M1 M1R1_un005 										#
+# Ex:	 ./prestats.csh MIG MIG-2722 P1 M1 											#
+# Ex:	 ./prestats.csh RAP RAP-???? M1 			 								#
 # p.clasen																			#
 #####################################################################################
 
@@ -18,33 +18,31 @@ if ($1 == MIG) then
 	# study specific 
 	set phase = $3
 	set model = $4
-	set examFeat = $5
 
 	## check (method for overwriting a design OR running same design on sub-set of subjects)
-	~/imaging/feat/lib/checkL1.csh $study $phase $model $examFeat
+	~/imaging/feat/lib/PScheck.csh $study $phase $model 
 
 	## make
-	~/imaging/feat/lib/makeL1design.csh $study $examSub $phase $model $examFeat
+	~/imaging/feat/lib/PSmakeFSF.csh $study $examSub $phase $model 
 	## document
-	~/imaging/feat/lib/L1modelParams.csh $study $examSub $phase $model $examFeat
+	~/imaging/feat/lib/PSparams.csh $study $examSub $phase $model 
 	## run
-	~/imaging/feat/lib/runL1design.csh $study $phase $model $examFeat
+	~/imaging/feat/lib/PSrunFSF.csh $study $phase $model 
 
 else if ($1 == RAP) then
 
 	# study specific 
 	set model = $3
-	set examFeat = $4
 	
 	## check (method for overwriting a design OR running same design on sub-set of subjects)
-	~/imaging/feat/lib/checkL1.csh $study $model $examFeat
+	~/imaging/feat/lib/PScheck.csh $study $model 
 
 	## make
-	~/imaging/feat/lib/makeL1design.csh $study $examSub $model $examFeat
+	~/imaging/feat/lib/PSmakeFSF.csh $study $examSub $model 
 	## document
-	~/imaging/feat/lib/L1modelParams.csh $study $examSub $model $examFeat
+	~/imaging/feat/lib/PSarams.csh $study $examSub $model 
 	## run
-	~/imaging/feat/lib/runL1design.csh $study $model $examFeat
+	~/imaging/feat/lib/PSrunFSF.csh $study $model 
 
 endif
 
