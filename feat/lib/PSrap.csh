@@ -31,7 +31,7 @@ set tempfile = $design/design-temp.txt
 set FourD = $fun/$run\_trim.nii.gz																									
 
 ##Make Design File
-cp $dir/$examSub/feat/$mod/glm/$examFeat.feat/design.fsf $ofile								
+cp $dir/$examSub/feat/$mod/prestats/$examFeat.feat/design.fsf $ofile								
 
 ##replace subject ID
 sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile
@@ -42,7 +42,7 @@ sed -e 's/R1/'{$run}'/g' <$ofile>$tempfile
 cp $tempfile $ofile
 
 ##replace design name
-sed -e 's/'{$examFeat}'/'{$desRun}'/g' <$ofile>$tempfile
+sed -e 's/R1/'{$desRun}'/g' <$ofile>$tempfile
 cp $tempfile $ofile
 
 ##replace Featwatcher

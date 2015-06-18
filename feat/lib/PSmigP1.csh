@@ -35,7 +35,7 @@ set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
 set npts = $volumes[1]
 
 ##Make Design File
-cp $dir/$examSub/feat/P1/$mod/glm/R1.feat/design.fsf $ofile								
+cp $dir/$examSub/feat/P1/$mod/prestats/R1.feat/design.fsf $ofile								
 
 ##replace subject ID
 sed -e 's/'{$examSub}'/'{$sub}'/g' <$ofile>$tempfile
@@ -46,7 +46,7 @@ sed -e 's/R1/'{$run}'/g' <$ofile>$tempfile
 cp $tempfile $ofile
 
 ##replace design name
-sed -e 's/'{$examFeat}'/'{$desRun}'/g' <$ofile>$tempfile
+sed -e 's/R1/'{$desRun}'/g' <$ofile>$tempfile
 cp $tempfile $ofile
 
 ##replace VOLUMES                                        
