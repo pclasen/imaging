@@ -12,7 +12,7 @@
 # set arguments
 set DIR = ~/Documents/$1
 set study = $1
-set file = $DIR/doc/asublist_test.txt
+set file = $DIR/doc/asublist.txt
 
 if ($1 == MIG) then
 
@@ -68,7 +68,7 @@ if ($1 == MIG) then
 							echo "WARNING: All $desName models will be deleted."
 							echo "WARNING: Are you sure? (y/n)"
 
-							set ready = %<
+							set ready = $<
 
 							if ($ready == "y") then
 
@@ -78,10 +78,13 @@ if ($1 == MIG) then
 
 								foreach line ("`cat $file`")
 
-									set $sub = "$line"
+									set sub = "$line"
 
 									# delete all model files
 									echo "NOTE: You are deleting $examFeat from every subject's $phase $model glm directory."
+									#if (-f $DIR/$sub/feat/$phase/model/glm/designFiles/$examFeat.fsf) then
+									#	rm $DIR/$sub/feat/$phase/model/glm/designFiles/$examFeat.fsf
+									#endif
 									rm -rf $DIR/$sub/feat/$phase/$model/glm/$examFeat
 
 								end # for each subject
@@ -158,7 +161,7 @@ else if ($1 == RAP) then
 							echo "WARNING: All $desName models will be deleted."
 							echo "WARNING: Are you sure? (y/n)"
 
-							set ready = %<
+							set ready = $<
 
 							if ($ready == "y") then
 

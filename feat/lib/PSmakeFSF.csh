@@ -17,7 +17,7 @@
 # set arguments
 set DIR = ~/Documents/$1
 set examSub = $2
-set file = $DIR/doc/asublist_test.txt
+set file = $DIR/doc/asublist.txt
 
 foreach line ("`cat $file`")
 		
@@ -77,13 +77,13 @@ foreach line ("`cat $file`")
 
 		# make the design files if the do not exist
 		if (-d $DIR/$sub/feat/$model/prestats/designFiles) then
-			
+
 			# do nothing
 
 		else
 			
 			# make the design file folder
-			mkdir -p $DIR/$sub/feat/prestats/$desName/designFiles
+			mkdir -p $DIR/$sub/feat/$model/prestats/designFiles
 
 		endif
 

@@ -47,6 +47,10 @@ else if ($1 == RAP) then
 	~/imaging/feat/lib/GLMmakeFSF.csh $study $examSub $model $examFeat
 	## document
 	~/imaging/feat/lib/GLMparams.csh $study $examSub $model $examFeat
+
+	## port over pre-stats data
+	~/imaging/feat/lib/GLMcpPrestats.csh $study $model $examFeat
+
 	## run
 	~/imaging/feat/lib/GLMrunFSF.csh $study $model
 

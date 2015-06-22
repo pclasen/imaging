@@ -40,7 +40,7 @@ else if ($1 == RAP) then
 	## make
 	~/imaging/feat/lib/PSmakeFSF.csh $study $examSub $model 
 	## document
-	~/imaging/feat/lib/PSarams.csh $study $examSub $model 
+	~/imaging/feat/lib/PSparams.csh $study $examSub $model 
 	## run
 	~/imaging/feat/lib/PSrunFSF.csh $study $model 
 

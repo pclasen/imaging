@@ -17,7 +17,7 @@
 # set arguments
 set DIR = ~/Documents/$1
 set examSub = $2
-set file = $DIR/doc/asublist_test.txt
+set file = $DIR/doc/asublist.txt
 
 foreach line ("`cat $file`")
 		
@@ -92,7 +92,7 @@ foreach line ("`cat $file`")
 		else
 			
 			# make the design file folder
-			mkdir -p $DIR/$sub/feat/glm/$desName/designFiles
+			mkdir -p $DIR/$sub/feat/$model/glm/designFiles
 
 		endif
 

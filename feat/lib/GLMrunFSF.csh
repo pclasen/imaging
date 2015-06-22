@@ -13,7 +13,7 @@
 
 # set arguments
 set DIR = ~/Documents/$1
-set file = $DIR/doc/asublist_test.txt
+set file = $DIR/doc/asublist.txt
 
 foreach line ("`cat $file`")
 		
@@ -54,7 +54,7 @@ foreach line ("`cat $file`")
 			
 			# grab name
 			set desName = `echo $desRun | sed -e 's|'{$DIR/$sub/feat/$model/glm/designFiles/}'||' | sed -e 's/.fsf//g'`
-
+			
 			# check if .feat already esists; if not - run the model
 			if (-f $DIR/$sub/feat/$model/glm/$desName.feat/design.fsf) then
 			else

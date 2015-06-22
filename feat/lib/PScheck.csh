@@ -12,7 +12,7 @@
 # set arguments
 set DIR = ~/Documents/$1
 set study = $1
-set file = $DIR/doc/asublist_test.txt
+set file = $DIR/doc/asublist.txt
 
 if ($1 == MIG) then
 
@@ -66,7 +66,7 @@ if ($1 == MIG) then
 							echo "WARNING: All $desName models will be deleted."
 							echo "WARNING: Are you sure? (y/n)"
 
-							set ready = %<
+							set ready = $<
 
 							if ($ready == "y") then
 
@@ -109,7 +109,7 @@ else if ($1 == RAP) then
 	set model = $2
 	
 	# design name and documentation file
-	set desName = $phase$model
+	set desName = $model
 	set docFile = $DIR/doc/PS/$desName.txt
 
 	if (-f $docFile) then
@@ -154,7 +154,7 @@ else if ($1 == RAP) then
 							echo "WARNING: All $desName models will be deleted."
 							echo "WARNING: Are you sure? (y/n)"
 
-							set ready = %<
+							set ready = $<
 
 							if ($ready == "y") then
 
