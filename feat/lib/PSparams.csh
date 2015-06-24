@@ -74,7 +74,7 @@ else if ($mc == 1) then
 		set mevs = True
 	endif
 	echo "Motion correction (McFlirt): $motion" >> $docFile
-	echo "Motion parameters(6) added as EVs: $mevs" >> $docFile
+	#echo "Motion parameters(6) added as EVs: $mevs" >> $docFile
 endif
 
 ##spatial smoting FWHM (mm)

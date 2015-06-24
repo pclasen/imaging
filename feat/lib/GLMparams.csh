@@ -44,6 +44,23 @@ set docFile = $DIR/doc/GLMs/$desName.txt
 set version = `grep 'set fmri(version)' $file | sed 's/set fmri(version) //g'` 
 echo "FEAT Version: $version" > $docFile
 
+##motion correction & motion parameters in model
+set mc = `grep 'set fmri(mc)' $file | sed 's/set fmri(mc) //g'`
+if ($mc == 0) then
+	set motion = False
+	echo "Motion correction (McFlirt): $motion" >> $docFile
+else if ($mc == 1) then
+	set motion = True
+	set mp = `grep 'set fmri(motionevs)' $file | sed 's/set fmri(motionevs) //g'`
+	if ($mp == 0) then
+		set mevs = False
+	else if ($mp == 1) then
+		set mevs = True
+	endif
+	#echo "Motion correction (McFlirt): $motion" >> $docFile
+	echo "Motion parameters(6) added as EVs: $mevs" >> $docFile
+endif
+
 ##number of EVs
 set evs = `grep 'set fmri(evs_orig)' $file | sed 's/set fmri(evs_orig) //g'`
 echo "Number of EVs (non-motion): $evs" >> $docFile
