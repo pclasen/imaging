@@ -32,9 +32,9 @@ foreach line ("`cat $file`")
 			
 			# grab name
 			set desName = `echo $desRun | sed -e 's|'{$DIR/$sub/feat/$phase/$model/prestats/designFiles/}'||' | sed -e 's/.fsf//g'`
-
+			
 			# check if .feat already esists; if not - run the model
-			if (-f $DIR/$sub/feat/$phase/$model/prestats/$desName.feat/design.fsf) then
+			if (-f $DIR/$sub/feat/$phase/$model/prestats/$desName.feat/filtered_func_data.nii.gz) then
 			else
 				feat $desRun
 			endif
@@ -56,7 +56,7 @@ foreach line ("`cat $file`")
 			set desName = `echo $desRun | sed -e 's|'{$DIR/$sub/feat/$model/prestats/designFiles/}'||' | sed -e 's/.fsf//g'`
 
 			# check if .feat already esists; if not - run the model
-			if (-f $DIR/$sub/feat/$model/prestats/$desName.feat/design.fsf) then
+			if (-f $DIR/$sub/feat/$model/prestats/$desName.feat/filtered_func_data.nii.gz) then
 			else
 				feat $desRun
 			endif
