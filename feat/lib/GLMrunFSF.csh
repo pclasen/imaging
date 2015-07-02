@@ -36,7 +36,10 @@ foreach line ("`cat $file`")
 			# check if .feat already esists; if not - run the model
 			if (-f $DIR/$sub/feat/$phase/$model/glm/$desName.feat/design.fsf) then
 			else
-				feat $desRun
+				if (-f $DIR/$sub/feat/$phase/$model/glm/$desName.gfeat/design.fsf) then
+				else
+					feat $desRun
+				endif
 			endif
 
 		end
@@ -58,8 +61,12 @@ foreach line ("`cat $file`")
 			# check if .feat already esists; if not - run the model
 			if (-f $DIR/$sub/feat/$model/glm/$desName.feat/design.fsf) then
 			else
-				feat $desRun
+				if (-f $DIR/$sub/feat/$model/glm/$desName.gfeat/design.fsf) then
+				else
+					feat $desRun
+				endif
 			endif
+
 
 		end
 
