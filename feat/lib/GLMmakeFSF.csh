@@ -97,7 +97,7 @@ foreach line ("`cat $file`")
 		endif
 
 		foreach run (R1 R2 R3 R4)  # 4 runs
-
+			
 			# make unique design file for sub model run & this design, based on exemplar 
 			~/imaging/feat/lib/GLMrap.csh $DIR $sub $model $run $examSub $examFeat
 

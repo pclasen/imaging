@@ -118,7 +118,7 @@ else if ($1 == RAP) then
 	set desStub = `echo $examFeat | sed -e 's/R1//'`
 	set desName = $model$desStub
 	set docFile = $DIR/doc/GLMs/$desName.txt
-
+	
 	if (-f $docFile) then
 		set ans = ""
 			
