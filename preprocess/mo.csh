@@ -91,7 +91,7 @@ foreach line ("`cat $file`")
 
 		end # run loop
 
-		echo "$metric $threshold" > $DIR/$sub/feat/$phase/motion_outliers/metric.txt
+		echo "$metric $threshold" > $DIR/$sub/feat/motion_outliers/metric.txt
 
 	endif # if RAP
 

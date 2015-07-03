@@ -31,6 +31,10 @@ set tempfile = $design/design-temp.txt
 #sets your 4D feat data:
 set FourD = $fun/P2$run\_trim.nii.gz																									
 
+#finds your total volumes
+set volumes = (`fslinfo $FourD | grep "dim4 "| awk '{print  $2}'`)
+set npts = $volumes[1]
+
 ##Make Design File
 cp $dir/$examSub/feat/P2/$mod/glm/$examFeat.feat/design.fsf $ofile								
 
@@ -44,6 +48,26 @@ cp $tempfile $ofile
 
 ##replace design name
 sed -e 's/'{$examFeat}'/'{$desRun}'/g' <$ofile>$tempfile
+cp $tempfile $ofile
+
+##replace VOLUMES                                        
+sed -e 's/fmri(npts) 209/fmri(npts) '{$npts}'/g' <$ofile>$tempfile						
+cp $tempfile $ofile
+
+##replace motion outlier confound
+set moFile = `grep -ci '# Confound EVs text file for analysis 1' $ofile`
+
+if (-f $dir/$sub/feat/P2/motion_outliers/$run.txt) then
+	sed -e 's/fmri(confoundevs) 0/fmri(confoundevs) 1/g' <$ofile>$tempfile
+
+	if ($moFile == 1) then
+	else
+		sed -i -e '275i# Confound EVs text file for analysis 1\' <$ofile>$tempfile
+		sed -i -e '276iset confoundev_files(1) "/Users/petercclasen/Documents/MIG/'{$sub}'/feat/P2/motion_outliers/'{$run}'.txt"\\' <$ofile>$tempfile
+	endif
+else
+	sed -e 's/fmri(confoundevs) 1/fmri(confoundevs) 0/g' <$ofile>$tempfile
+endif
 cp $tempfile $ofile
 
 ##replace Featwatcher

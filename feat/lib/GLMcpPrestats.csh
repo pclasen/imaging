@@ -42,8 +42,14 @@ foreach line ("`cat $file`")
 					cp -r $prestats/$run.feat $glm/$run$desStub.feat
 					
 					# remove prestats design data and html output from glm location copy
-					rm $glm/$run$desStub.feat/design*
-					rm $glm/$run$desStub.feat/*.html
+					if (-f $glm/$run$desStub.feat/design.fsf) then
+						rm $glm/$run$desStub.feat/design*
+					endif
+
+					if (-f $glm/$run$desStub.feat/report_reg.html) then
+						rm $glm/$run$desStub.feat/*.html
+					endif
+
 				endif
 
 			end # run
@@ -60,8 +66,14 @@ foreach line ("`cat $file`")
 					cp -r $prestats/$run.feat $glm/$run$desStub.feat
 					
 					# remove prestats design data and html output from glm location copy
-					rm $glm/$run$desStub.feat/design*
-					rm $glm/$run$desStub.feat/*.html
+					if (-f $glm/$run$desStub.feat/design.fsf) then
+						rm $glm/$run$desStub.feat/design*
+					endif
+
+					if (-f $glm/$run$desStub.feat/report_reg.html) then
+						rm $glm/$run$desStub.feat/*.html
+					endif
+
 				endif
 
 			end # run
@@ -87,8 +99,14 @@ foreach line ("`cat $file`")
 				cp -r $prestats/$run.feat $glm/$run$desStub.feat
 				
 				# remove prestats design data and html output from glm location copy
-				rm $glm/$run$desStub.feat/design*
-				rm $glm/$run$desStub.feat/*.html
+				if (-f $glm/$run$desStub.feat/design.fsf) then
+					rm $glm/$run$desStub.feat/design*
+				endif
+				
+				if (-f $glm/$run$desStub.feat/report_reg.html) then
+					rm $glm/$run$desStub.feat/*.html
+				endif
+
 			endif
 
 		end # run

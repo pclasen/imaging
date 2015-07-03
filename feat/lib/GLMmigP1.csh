@@ -54,6 +54,22 @@ cp $tempfile $ofile
 sed -e 's/fmri(npts) 165/fmri(npts) '{$npts}'/g' <$ofile>$tempfile						##R1 has 165 volumes; make variable because run 2 has 149
 cp $tempfile $ofile
 
+##replace motion outlier confound
+set moFile = `grep -ci '# Confound EVs text file for analysis 1' $ofile`
+
+if (-f $dir/$sub/feat/P1/motion_outliers/$run.txt) then
+	sed -e 's/fmri(confoundevs) 0/fmri(confoundevs) 1/g' <$ofile>$tempfile
+
+	if ($moFile == 1) then
+	else
+		sed -i -e '275i# Confound EVs text file for analysis 1\' <$ofile>$tempfile
+		sed -i -e '276iset confoundev_files(1) "/Users/petercclasen/Documents/MIG/'{$sub}'/feat/P1/motion_outliers/'{$run}'.txt"\\' <$ofile>$tempfile
+	endif
+else
+	sed -e 's/fmri(confoundevs) 1/fmri(confoundevs) 0/g' <$ofile>$tempfile
+endif
+cp $tempfile $ofile
+
 ##replace Featwatcher
 sed -e 's/fmri(featwatcher_yn) 1/fmri(featwatcher_yn) 0/g' <$ofile>$tempfile	
 cp $tempfile $ofile
