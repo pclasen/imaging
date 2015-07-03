@@ -16,7 +16,8 @@ function [] = MIGP2_peristim_ts(list,roi)
         for i=1:length(cond)
             
             ts.(cond{i}) = [];
-            ts.mean.(cond{i
+            ts.mean.(cond{i}) = [];
+            ts.std.(cond{i}) = [];
             
             for j=1:length(run);
 
@@ -29,8 +30,8 @@ function [] = MIGP2_peristim_ts(list,roi)
 
             end % run
 
-            ts.mean.(cond{i}) = mean(ts.(cond{i}),1);
-            ts.std.(cond{i}) = std(ts.(cond{i}),1);
+            ts.mean.(cond{i})(g,:) = mean(ts.(cond{i}),1);
+            ts.std.(cond{i})(g,:) = std(ts.(cond{i}),1);
 
         end % condition
         
