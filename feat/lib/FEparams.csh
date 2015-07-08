@@ -20,6 +20,7 @@ if ($1 == MIG) then
 	set phase = $3
 	set model = $4
 	set examGfeat = $5
+	set desName = $phase$model$examGfeat
 	set desDIR = $DIR/$sub/feat/$phase/$model/glm/designFiles
 	set file = $desDIR/$examGfeat.fsf
 endif
@@ -27,11 +28,12 @@ if ($1 == RAP) then
 	set sub = $2
 	set model = $3
 	set examGfeat = $4
+	set desName = $model$examGfeat
 	set desDIR = $DIR/$sub/feat/$model/glm/designFiles
 	set file = $desDIR/$examGfeat.fsf
 endif
 
-set docFile = $DIR/doc/FEs/$phase$model$examGfeat.txt
+set docFile = $DIR/doc/FEs/$desName.txt
 
 
 #	#	#	Report parameters	#	#	#
