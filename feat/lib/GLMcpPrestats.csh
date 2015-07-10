@@ -14,7 +14,7 @@
 
 # set arguments
 set DIR = ~/Documents/$1
-set file = $DIR/doc/asublist.txt
+set file = $DIR/doc/asublist_test.txt
 
 foreach line ("`cat $file`")
 		
