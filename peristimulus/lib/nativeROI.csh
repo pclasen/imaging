@@ -1,7 +1,7 @@
 #! /bin/csh -ef
 
 #####################################################################################
-# convert standard space ROIs to native space										#
+# generate first level design files													#
 # Usage: ./nativeROI.csh <study> <phase> <model> <example feat>	<type> <ROI>		#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
 # Ex:	 ./nativeROI.csh MIG P1 M1 R1_FIR anatomical RAMY6 							#

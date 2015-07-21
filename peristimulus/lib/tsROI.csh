@@ -1,7 +1,7 @@
 #! /bin/csh -ef
 
 #####################################################################################
-# extract peristimulus timeseries for given ROI										#
+# generate first level design files													#
 # Usage: ./tsROI.csh <study> <phase> <model> <example feat> <ROI>					#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
 # Ex:	 ./tsROI.csh MIG P1 M1 R1_FIR RAMY6		 									#

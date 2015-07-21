@@ -1,7 +1,7 @@
 #! /bin/csh -ef
 
 #####################################################################################
-# merge condition specific PEs from FIR for peristimulus plotting					#
+# generate first level design files													#
 # Usage: ./mergeFIR.csh <study> <phase> <model> <example feat>						#
 # NOTE:  VARIABLE ARGUMENTS FOR DIFFERENT STUDIES									#
 # Ex:	 ./mergeFIR.csh MIG P1 M1 R1_FIR 			 								#
@@ -51,14 +51,14 @@ foreach line ("`cat $file`")
 
 							# concatenate the FIR parameter estimates for this condition in time
 							cd $rundir/stats/
-							fslmerge -t TswSF pe21.nii.gz pe22.nii.gz pe23.nii.gz pe24.nii.gz pe25.nii.gz pe26.nii.gz pe27.nii.gz pe28.nii.gz pe29.nii.gz pe30.nii.gz pe31.nii.gz pe32.nii.gz pe33.nii.gz pe34.nii.gz
+							fslmerge -t TswSF pe15.nii.gz pe16.nii.gz pe17.nii.gz pe18.nii.gz pe19.nii.gz pe20.nii.gz pe21.nii.gz pe22.nii.gz pe23.nii.gz pe24.nii.gz pe25.nii.gz
 							cd ~
 
 						else if ($trialCond == TswNF) then
 
 							# concatenate the FIR parameter estimates for this condition in time
 							cd $rundir/stats/
-							fslmerge -t TswNF pe35.nii.gz pe36.nii.gz pe37.nii.gz pe38.nii.gz pe39.nii.gz pe40.nii.gz pe41.nii.gz pe42.nii.gz pe43.nii.gz pe44.nii.gz pe45.nii.gz pe46.nii.gz pe47.nii.gz pe48.nii.gz
+							fslmerge -t TswNF pe26.nii.gz pe27.nii.gz pe28.nii.gz pe29.nii.gz pe30.nii.gz pe31.nii.gz pe32.nii.gz pe33.nii.gz pe34.nii.gz pe35.nii.gz pe36.nii.gz
 							cd ~
 
 						endif # trialCond
