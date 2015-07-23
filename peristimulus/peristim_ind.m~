@@ -38,8 +38,8 @@ if plt == 0
 elseif plt == 1;
     
     % constants
-    x = 1:11;
-    xx = 1:.25:11;
+    x = 1:14;
+    xx = 1:.25:14;
     txt1 = {'Target'};
     txt2 = {'Maintain Face ("Stay")'};
     txt3 = {'Switch to Scene ("Switch")'};
@@ -54,16 +54,22 @@ elseif plt == 1;
     yy = spline(x,y,xx);
     plot(xx,yy,'b-','LineWidth',2); hold on; % blue
     grid on;
-    title('All conditions all runs');
+    title('All Conditions');
     ylabel('PE');
     % event markers
     ax = axis;
-    plot([1 1],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([3 3],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([7 7],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([11 11],ax(3:4),'r-','LineWidth',2); hold on;
-    text(1.6,(ax(3)+.2),txt1);
-    text(4.6,
+    fig = gca;
+    axis([1 14 ax(3) ax(4)]);
+    ax.XTick = [
+    plot([2 2],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([4 4],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([8 8],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([12 12],ax(3:4),'r-','LineWidth',2); hold on;
+    % add text
+    text(2.6,(ax(3)+.2),txt1);
+    text(4.6,(ax(3)+.2),txt2);
+    text(8.2,(ax(3)+.2),txt3);
+
     
     % second subplot: sad faces
     subplot(3,1,2);
@@ -75,10 +81,15 @@ elseif plt == 1;
     ylabel('PE');
     % event markers
     ax = axis;
-    plot([1 1],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([3 3],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([7 7],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([11 11],ax(3:4),'r-','LineWidth',2); hold on;
+    axis([1 14 ax(3) ax(4)]);
+    plot([2 2],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([4 4],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([8 8],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([12 12],ax(3:4),'r-','LineWidth',2); hold on;
+    % add text
+    text(2.6,(ax(3)+.2),txt1);
+    text(4.6,(ax(3)+.2),txt2);
+    text(8.2,(ax(3)+.2),txt3);
     
     % third subplot: neutral faces
     subplot(3,1,3);
@@ -90,10 +101,15 @@ elseif plt == 1;
     ylabel('PE');
     % event markers
     ax = axis;
-    plot([1 1],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([3 3],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([7 7],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([11 11],ax(3:4),'r-','LineWidth',2); hold on;
+    axis([1 14 ax(3) ax(4)]);
+    plot([2 2],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([4 4],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([8 8],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([12 12],ax(3:4),'r-','LineWidth',2); hold on;
+    % add text
+    text(2.6,(ax(3)+.2),txt1);
+    text(4.6,(ax(3)+.2),txt2);
+    text(8.2,(ax(3)+.2),txt3);
     
     % overall x label
     xlabel('TRs (2secs)')

@@ -58,14 +58,19 @@ elseif plt == 1;
     ylabel('PE');
     % event markers
     ax = axis;
-    plot([2 2],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([4 4],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([8 8],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([12 12],ax(3:4),'r-','LineWidth',2); hold on;
+    axis([1 14 ax(3) ax(4)]);
+    tk = gca;
+    tk.XTickLabel = [3 5 7 9 11 13 15]; 
+    plot([1 1],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([3 3],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([7 7],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([11 11],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([11.5 11.5],ax(3:4),'r-','LineWidth',1); hold on;
+    plot([12 12],ax(3:4),'r-','LineWidth',1); hold on;
     % add text
-    text(2.6,(ax(3)+.2),txt1);
-    text(5,(ax(3)+.2),txt2);
-    text(9,(ax(3)+.2),txt3);
+    text(1.6,(ax(3)+.2),txt1);
+    text(3.6,(ax(3)+.2),txt2);
+    text(7.2,(ax(3)+.2),txt3);
 
     
     % second subplot: sad faces
@@ -78,14 +83,19 @@ elseif plt == 1;
     ylabel('PE');
     % event markers
     ax = axis;
-    plot([2 2],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([4 4],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([8 8],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([12 12],ax(3:4),'r-','LineWidth',2); hold on;
+    axis([1 14 ax(3) ax(4)]);
+    %tk = gca;
+    %tk.XTickLabel = [0 4 6 8 10 12 14]; 
+    plot([1 1],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([3 3],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([7 7],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([11 11],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([11.5 11.5],ax(3:4),'r-','LineWidth',1); hold on;
+    plot([12 12],ax(3:4),'r-','LineWidth',1); hold on;
     % add text
-    text(2.6,(ax(3)+.2),txt1);
-    text(5,(ax(3)+.2),txt2);
-    text(9,(ax(3)+.2),txt3);
+    text(1.6,(ax(3)+.2),txt1);
+    text(3.6,(ax(3)+.2),txt2);
+    text(7.2,(ax(3)+.2),txt3);
     
     % third subplot: neutral faces
     subplot(3,1,3);
@@ -97,17 +107,22 @@ elseif plt == 1;
     ylabel('PE');
     % event markers
     ax = axis;
-    plot([2 2],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([4 4],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([8 8],ax(3:4),'r-','LineWidth',2); hold on;
-    plot([12 12],ax(3:4),'r-','LineWidth',2); hold on;
+    %tk = gca;
+    %tk.XTickLabel = [0 4 6 8 10 12 14]; 
+    axis([1 14 ax(3) ax(4)]);
+    plot([1 1],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([3 3],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([7 7],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([11 11],ax(3:4),'r-','LineWidth',2); hold on;
+    plot([11.5 11.5],ax(3:4),'r-','LineWidth',1); hold on;
+    plot([12 12],ax(3:4),'r-','LineWidth',1); hold on;
     % add text
-    text(2.6,(ax(3)+.2),txt1);
-    text(5,(ax(3)+.2),txt2);
-    text(9,(ax(3)+.2),txt3);
+    text(1.6,(ax(3)+.2),txt1);
+    text(3.6,(ax(3)+.2),txt2);
+    text(7.2,(ax(3)+.2),txt3);
     
     % overall x label
-    xlabel('TRs (2secs)')
+    xlabel('seconds')
     
     % print to file as .png
     print(fig,[dir,'/plots/',roi,'.png'],'-dpng');
