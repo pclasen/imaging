@@ -1,0 +1,35 @@
+function [] = vector_gimmeContemp(sub,roi_num,run)
+% create vector of subject's contemporaneous ROI relations from GIMME
+% sub: string reflecting subject number (e.g., 's002')
+% roi_num: integer reflecting number of ROIs (e.g., 17)
+% run: string reflecting run number (e.g., 'R1')
+
+% default
+if (nargin < 3 || isempty(run)
+    run = 1;
+end
+
+% vector size
+vec_size = roi_num^2;
+
+% set dir/file
+dir = '~/Documents/NRSA/gimme/data/1d_Timecourses_csv';
+file = [dir,run,'_out/betas/',sub,'_',run,'.csv'];
+
+% readin data
+dat = csvread(file,roi_num,roi_num);
+
+% reshape & transpose
+reshape_vec = reshape(dat,1,vec_size);
+vec = reshape_vec';
+
+% filename
+filename = [dir,run,'out/betas/',sub
+
+% save
+save(filename,vec);
+
+
+
+end
+

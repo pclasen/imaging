@@ -24,6 +24,7 @@ set path = ($path ~/imaging/behavior/MIG)
 set path = ($path ~/imaging/behavior/RAP)
 set path = ($path ~/imaging/peristimulus)
 set path = ($path ~/imaging/peristimulus/lib)
+set path = ($path ~/imaging/gimme)
 set path = ($path ~/github/admin)
 
 ### copy .cshrc and .alias to imaging dirctory
