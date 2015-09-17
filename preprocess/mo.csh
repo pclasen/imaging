@@ -73,6 +73,11 @@ foreach line ("`cat $file`")
 
     if ($1 == RAP) then
 
+    	if (-d $DIR/$sub/feat) then
+    	else
+    		mkdir $DIR/$sub/feat
+		endif
+
 
 		if (-d $DIR/$sub/feat/motion_outliers) then
 		else
