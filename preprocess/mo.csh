@@ -36,7 +36,7 @@ foreach line ("`cat $file`")
 
 	    		foreach run (R1 R2)
 
-	    			if (-f $DIR/$sub/feat/$phase/motion_outliers/$run.txt) then
+	    			if (-f $DIR/$sub/feat/$phase/motion_outliers/$run.png) then
 	    			else
 
 					    # run fsl_motion_outliers
@@ -57,7 +57,7 @@ foreach line ("`cat $file`")
 
 	    		foreach run (R1 R2 R3 R4 R5 R6 R7 R8)
 
-	    			if (-f $DIR/$sub/feat/$phase/motion_outliers/$run.txt) then
+	    			if (-f $DIR/$sub/feat/$phase/motion_outliers/$run.png) then
 	    			else
 
 					    # run fsl_motion_outliers
@@ -91,7 +91,7 @@ foreach line ("`cat $file`")
 
 		foreach run (R1 R2 R3 R4)
 
-			if (-f $DIR/$sub/feat/motion_outliers/$run.txt) then
+			if (-f $DIR/$sub/feat/motion_outliers/$run.png) then
 			else
 
 			    # run fsl_motion_outliers
