@@ -22,17 +22,17 @@ foreach line ("`cat $file`")
 
 	    foreach phase (P1 P2)
 
+    		if (-d $DIR/$sub/feat) then
+    		else
+    			mkdir $DIR/$sub/feat
+			endif
+    		
+    		if (-d $DIR/$sub/feat/$phase) then
+    		else
+    			mkdir $DIR/$sub/feat/$phase
+			endif
+    			
 	    	if ($phase == P1) then
-
-	    		if (-d $DIR/$sub/feat) then
-	    		else
-	    			mkdir $DIR/$sub/feat
-    			endif
-	    		
-	    		if (-d $DIR/$sub/feat/$phase) then
-	    		else
-	    			mkdir $DIR/$sub/feat/$phase
-    			endif
 	
 	    		if (-d $DIR/$sub/feat/$phase/motion_outliers) then
 	    		else
