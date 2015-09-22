@@ -24,6 +24,11 @@ foreach line ("`cat $file`")
 
 	    	if ($phase == P1) then
 
+	    		if (-d $DIR/$sub/feat) then
+	    		else
+	    			mkdir $DIR/$sub/feat
+    			endif
+	    			
 	    		if (-d $DIR/$sub/feat/$phase/motion_outliers) then
 	    		else
 	    			mkdir $DIR/$sub/feat/$phase/motion_outliers
